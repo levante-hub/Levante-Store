@@ -1,4 +1,4 @@
-# 🏪 Saúl MCP Store
+# 🏪 Levante MCP Store
 
 API RESTful para exponer un catálogo de servidores MCP (Model Context Protocol) consumible por [Levante](https://github.com/levante-hub/levante).
 
