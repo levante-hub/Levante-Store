@@ -1,0 +1,22 @@
+{
+    "providers": [
+        {
+            "id": "levante",
+            "name": "Levante Store",
+            "description": "Catálogo oficial de MCPs de Levante",
+            "type": "local",
+            "endpoint": "local://mcps.json",
+            "enabled": true,
+            "homepage": "https://example.com"
+        },
+        {
+            "id": "aitempl",
+            "name": "AITempl",
+            "description": "MCP server templates from aitmpl.com",
+            "type": "api",
+            "endpoint": "https://www.aitmpl.com/components.json",
+            "enabled": true,
+            "homepage": "https://www.aitmpl.com"
+        }
+    ]
+}
