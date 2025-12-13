@@ -70,6 +70,9 @@ jobs:
         with:
           node-version: '22'
 
+      - name: Pre-install MCP Inspector
+        run: npm install -g @modelcontextprotocol/inspector@latest
+
       - name: Test ${{ matrix.mcp.name }} with MCP Inspector
         continue-on-error: true
         timeout-minutes: 3
@@ -80,6 +83,11 @@ jobs:
           if [ -n "$MCP_FILE" ]; then
             COMMAND=$(jq -r '.configuration.template.command' "$MCP_FILE")
             ARGS=$(jq -r '.configuration.template.args | join(" ")' "$MCP_FILE")
-            echo "Running: npx @modelcontextprotocol/inspector@latest --cli $COMMAND $ARGS --method tools/list"
-            npx @modelcontextprotocol/inspector@latest --cli $COMMAND $ARGS --method tools/list --timeout 60000 || echo "MCP test completed (may require auth)"
+            echo "Running: mcp-inspector --cli $COMMAND $ARGS --method tools/list"
+            # Retry up to 3 times with increasing delay
+            for i in 1 2 3; do
+              mcp-inspector --cli $COMMAND $ARGS --method tools/list --timeout 60000 && break
+              echo "Attempt $i failed, retrying in ${i}0 seconds..."
+              sleep $((i * 10))
+            done || echo "MCP test completed (may require auth or network issues)"
           fi
