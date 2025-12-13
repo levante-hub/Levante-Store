@@ -70,12 +70,6 @@ jobs:
         with:
           node-version: '22'
 
-      - name: Clear npx cache and pre-install inspector
-        run: |
-          npx clear-npx-cache || true
-          npm cache clean --force
-          npm install -g @modelcontextprotocol/inspector@latest
-
       - name: Test ${{ matrix.mcp.name }} with MCP Inspector
         continue-on-error: true
         timeout-minutes: 3
@@ -86,10 +80,6 @@ jobs:
             COMMAND=$(jq -r '.configuration.template.command' "$MCP_FILE")
             ARGS=$(jq -r '.configuration.template.args | join(" ")' "$MCP_FILE")
 
-            echo "Pre-installing MCP package..."
-            # Pre-install the MCP package to avoid npx download issues
-            npx -y $ARGS --version 2>/dev/null || true
-
-            echo "Running: mcp-inspector --cli $COMMAND $ARGS --method tools/list"
-            mcp-inspector --cli $COMMAND $ARGS --method tools/list --timeout 60000 || echo "MCP test completed (may require auth)"
+            echo "Running: npx @modelcontextprotocol/inspector@latest --cli $COMMAND $ARGS --method tools/list"
+            npx @modelcontextprotocol/inspector@latest --cli $COMMAND $ARGS --method tools/list || echo "MCP test completed (may require auth)"
           fi
