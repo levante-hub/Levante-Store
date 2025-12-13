@@ -79,9 +79,6 @@ jobs:
       - name: Test ${{ matrix.mcp.name }} with MCP Inspector
         continue-on-error: true
         timeout-minutes: 3
-        env:
-          # Ensure PATH includes node binaries for subprocesses
-          PATH: ${{ env.PATH }}:/usr/local/bin
         run: |
           echo "Testing MCP: ${{ matrix.mcp.name }} (${{ matrix.mcp.id }})"
           MCP_FILE=$(find src/data/mcps -name "*.json" -exec grep -l '"id": "${{ matrix.mcp.id }}"' {} \; | head -1)
