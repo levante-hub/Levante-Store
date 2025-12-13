@@ -1,0 +1,31 @@
+{
+  "$schema": "../_schema.json",
+  "id": "microsoft-docs",
+  "name": "Microsoft Docs",
+  "description": "Access Microsoft Learn documentation and technical resources",
+  "category": "documentation",
+  "icon": "book",
+  "logoUrl": "https://learn.microsoft.com/media/logos/logo-ms-social.png",
+  "source": "official",
+  "maintainer": {
+    "name": "Microsoft",
+    "url": "https://microsoft.com",
+    "github": "microsoft"
+  },
+  "status": "active",
+  "version": "1.0.0",
+  "transport": "streamable-http",
+  "inputs": {},
+  "configuration": {
+    "template": {
+      "type": "streamable-http",
+      "url": "https://learn.microsoft.com/api/mcp",
+      "headers": {}
+    }
+  },
+  "metadata": {
+    "homepage": "https://learn.microsoft.com",
+    "addedAt": "2025-01-01",
+    "lastUpdated": "2025-01-01"
+  }
+}

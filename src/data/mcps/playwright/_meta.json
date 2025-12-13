@@ -1,0 +1,8 @@
+{
+  "service": "playwright",
+  "displayName": "Playwright",
+  "description": "MCPs for browser automation and testing",
+  "website": "https://playwright.dev",
+  "icon": "globe",
+  "category": "automation"
+}

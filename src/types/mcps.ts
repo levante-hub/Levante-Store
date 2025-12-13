@@ -1,33 +1,83 @@
-export type TransportType = 'stdio' | 'http' | 'sse';
+// Transport types aligned with MCP protocol
+export type TransportType = 'stdio' | 'sse' | 'streamable-http';
 
-export interface EnvVarDefinition {
+// Source types
+export type SourceType = 'official' | 'community';
+
+// Input definition for user-provided values
+export interface InputDefinition {
   label: string;
   required: boolean;
-  type: 'string' | 'number' | 'boolean';
+  type: 'string' | 'password' | 'number' | 'boolean';
   default?: string;
   description?: string;
 }
 
+// Maintainer information
+export interface Maintainer {
+  name: string;
+  url?: string;
+  github?: string;
+}
+
+// Configuration template for stdio transport
+export interface StdioTemplate {
+  command: string;
+  args: string[];
+  env: Record<string, string>;
+}
+
+// Configuration template for http/sse transport
+export interface HttpTemplate {
+  type: 'sse' | 'streamable-http';
+  url: string;
+  headers?: Record<string, string>;
+}
+
+// Union type for templates
+export type ConfigurationTemplate = StdioTemplate | HttpTemplate;
+
+// MCP Server Descriptor (new format aligned with PRD)
 export interface MCPServerDescriptor {
+  $schema?: string;
   id: string;
   name: string;
   description: string;
   category: string;
   icon: string;
   logoUrl?: string;
-  provider: string; // ✅ NUEVO: Identifica el proveedor (ej: "levante", "aitempl")
+  source: SourceType;
+  maintainer?: Maintainer;
+  status?: 'active' | 'deprecated' | 'experimental';
+  version: string;
   transport: TransportType;
-  command: string;
-  args: string[];
-  env: Record<string, EnvVarDefinition>;
+  inputs: Record<string, InputDefinition>;
+  configuration: {
+    template: ConfigurationTemplate;
+  };
   metadata?: {
     homepage?: string;
     author?: string;
     repository?: string;
+    addedAt?: string;
+    lastUpdated?: string;
     useCount?: number;
   };
+  // Legacy field for backwards compatibility during migration
+  provider?: string;
 }
 
+// Service metadata (_meta.json)
+export interface ServiceMeta {
+  service: string;
+  displayName: string;
+  description: string;
+  website: string | null;
+  icon: string;
+  category: string;
+}
+
+// API Response format
 export interface MCPStoreResponse {
   version: string;
   provider: {
@@ -38,31 +88,31 @@ export interface MCPStoreResponse {
   servers: MCPServerDescriptor[];
 }
 
+// Services list response
+export interface ServicesResponse {
+  services: ServiceMeta[];
+}
+
 // ========================================
-// NUEVOS TIPOS PARA SISTEMA DE PROVEEDORES
+// PROVIDER TYPES (for external providers like AITempl)
 // ========================================
 
-/**
- * Configuración de un proveedor MCP
- */
 export interface ProviderConfig {
   id: string;
   name: string;
   description: string;
-  type: 'local' | 'api'; // local = archivo estático, api = endpoint externo
+  type: 'local' | 'api';
   endpoint: string;
   enabled: boolean;
   homepage?: string;
 }
 
-/**
- * Tipos para AITempl Provider
- */
+// AITempl provider types
 export interface AitemplMcpServer {
   name: string;
   description: string;
   category: string;
-  content: string; // ⚠️ JSON stringificado
+  content: string;
   downloads: number;
   logoUrl?: string;
 }
@@ -71,10 +121,6 @@ export interface AitemplResponse {
   mcps: AitemplMcpServer[];
 }
 
-/**
- * Estructura interna del campo 'content' de AITempl
- * (después de parsear el JSON string)
- */
 export interface AitemplContentStructure {
   mcpServers: {
     [serverName: string]: {

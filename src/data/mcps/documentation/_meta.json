@@ -1,0 +1,8 @@
+{
+  "service": "documentation",
+  "displayName": "Documentation",
+  "description": "MCPs for accessing documentation and technical resources",
+  "website": null,
+  "icon": "book",
+  "category": "documentation"
+}

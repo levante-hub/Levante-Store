@@ -1,0 +1,174 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://levante-store.com/schemas/mcp.json",
+  "title": "MCP Server Descriptor",
+  "description": "Schema for individual MCP server definition files",
+  "type": "object",
+  "required": ["id", "name", "description", "category", "source", "transport", "configuration"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Reference to this schema"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Unique identifier for the MCP (lowercase, alphanumeric with hyphens)"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Display name for the MCP"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Brief description of what the MCP does"
+    },
+    "category": {
+      "type": "string",
+      "enum": ["documentation", "development", "database", "automation", "ai", "communication", "productivity", "other"],
+      "description": "Category for organizing MCPs"
+    },
+    "icon": {
+      "type": "string",
+      "description": "Icon identifier"
+    },
+    "logoUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "URL to the MCP logo image"
+    },
+    "source": {
+      "type": "string",
+      "enum": ["official", "community"],
+      "description": "Origin of the MCP (official = by service provider, community = third-party)"
+    },
+    "maintainer": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the maintainer or organization"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Website of the maintainer"
+        },
+        "github": {
+          "type": "string",
+          "description": "GitHub username or organization"
+        }
+      },
+      "required": ["name"]
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "deprecated", "experimental"],
+      "default": "active"
+    },
+    "version": {
+      "type": "string",
+      "description": "Version of the MCP"
+    },
+    "transport": {
+      "type": "string",
+      "enum": ["stdio", "sse", "streamable-http"],
+      "description": "Transport protocol used by the MCP"
+    },
+    "inputs": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["label", "required", "type"],
+        "properties": {
+          "label": {
+            "type": "string",
+            "description": "Human-readable label for the input"
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Whether this input is required"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["string", "password", "number", "boolean"],
+            "description": "Type of the input value"
+          },
+          "default": {
+            "type": "string",
+            "description": "Default value for the input"
+          },
+          "description": {
+            "type": "string",
+            "description": "Help text for the input"
+          }
+        }
+      },
+      "description": "User-provided inputs required for this MCP"
+    },
+    "configuration": {
+      "type": "object",
+      "required": ["template"],
+      "properties": {
+        "template": {
+          "type": "object",
+          "description": "Template for generating the MCP configuration",
+          "oneOf": [
+            {
+              "type": "object",
+              "required": ["command"],
+              "properties": {
+                "command": { "type": "string" },
+                "args": { "type": "array", "items": { "type": "string" } },
+                "env": { "type": "object", "additionalProperties": { "type": "string" } }
+              },
+              "additionalProperties": false
+            },
+            {
+              "type": "object",
+              "required": ["type", "url"],
+              "properties": {
+                "type": { "type": "string", "enum": ["sse", "streamable-http"] },
+                "url": { "type": "string" },
+                "headers": { "type": "object", "additionalProperties": { "type": "string" } }
+              },
+              "additionalProperties": false
+            }
+          ]
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "homepage": {
+          "type": "string",
+          "format": "uri",
+          "description": "Documentation or homepage URL"
+        },
+        "repository": {
+          "type": "string",
+          "format": "uri",
+          "description": "Source code repository URL"
+        },
+        "author": {
+          "type": "string",
+          "description": "Author name"
+        },
+        "addedAt": {
+          "type": "string",
+          "format": "date",
+          "description": "Date when the MCP was added to the catalog"
+        },
+        "lastUpdated": {
+          "type": "string",
+          "format": "date",
+          "description": "Date of last update"
+        }
+      }
+    }
+  },
+  "additionalProperties": false
+}

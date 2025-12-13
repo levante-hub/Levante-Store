@@ -1,0 +1,8 @@
+{
+  "service": "github",
+  "displayName": "GitHub",
+  "description": "MCPs for GitHub integration and code management",
+  "website": "https://github.com",
+  "icon": "github",
+  "category": "development"
+}

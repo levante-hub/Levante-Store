@@ -1,0 +1,8 @@
+{
+  "service": "supabase",
+  "displayName": "Supabase",
+  "description": "MCPs for Supabase database and backend services",
+  "website": "https://supabase.com",
+  "icon": "database",
+  "category": "database"
+}

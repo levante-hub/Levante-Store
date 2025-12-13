@@ -1,0 +1,37 @@
+# Official MCPs
+mcp-official:
+  - changed-files:
+      - any-glob-to-any-file: 'src/data/mcps/**/official*.json'
+
+# Community MCPs
+mcp-community:
+  - changed-files:
+      - any-glob-to-any-file: 'src/data/mcps/**/community*.json'
+
+# Service-specific labels
+service-supabase:
+  - changed-files:
+      - any-glob-to-any-file: 'src/data/mcps/supabase/**'
+
+service-github:
+  - changed-files:
+      - any-glob-to-any-file: 'src/data/mcps/github/**'
+
+service-playwright:
+  - changed-files:
+      - any-glob-to-any-file: 'src/data/mcps/playwright/**'
+
+service-documentation:
+  - changed-files:
+      - any-glob-to-any-file: 'src/data/mcps/documentation/**'
+
+# Schema changes
+schema:
+  - changed-files:
+      - any-glob-to-any-file: 'src/data/mcps/_schema.json'
+
+# Documentation
+documentation:
+  - changed-files:
+      - any-glob-to-any-file: '**/*.md'
+      - any-glob-to-any-file: 'docs/**'

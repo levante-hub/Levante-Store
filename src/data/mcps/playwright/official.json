@@ -1,0 +1,32 @@
+{
+  "$schema": "../_schema.json",
+  "id": "playwright",
+  "name": "Playwright",
+  "description": "Browser automation and web testing with Playwright",
+  "category": "automation",
+  "icon": "globe",
+  "logoUrl": "https://playwright.dev/img/playwright-logo.svg",
+  "source": "official",
+  "maintainer": {
+    "name": "Microsoft",
+    "url": "https://playwright.dev",
+    "github": "microsoft"
+  },
+  "status": "active",
+  "version": "latest",
+  "transport": "stdio",
+  "inputs": {},
+  "configuration": {
+    "template": {
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"],
+      "env": {}
+    }
+  },
+  "metadata": {
+    "homepage": "https://playwright.dev",
+    "repository": "https://github.com/microsoft/playwright",
+    "addedAt": "2025-01-01",
+    "lastUpdated": "2025-01-01"
+  }
+}

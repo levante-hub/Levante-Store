@@ -1,8 +1,9 @@
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
-import { renderer } from './renderer'
+import { swaggerUI } from '@hono/swagger-ui'
 import mcps from './routes/mcps'
 import { errorHandler, notFoundHandler } from './middleware/errorHandler'
+import { openApiSpec } from './openapi'
 
 const app = new Hono<{ Bindings: CloudflareBindings }>();
 
@@ -31,12 +32,13 @@ app.use('*', errorHandler);
 // Montar rutas de API
 app.route('/api', mcps);
 
-// Rutas de UI (renderer)
-app.use(renderer)
+// OpenAPI spec endpoint
+app.get('/openapi.json', (c) => {
+  return c.json(openApiSpec);
+});
 
-app.get('/', (c) => {
-  return c.render(<h1>Saúl MCP Store</h1>)
-})
+// Swagger UI at root
+app.get('/', swaggerUI({ url: '/openapi.json' }))
 
 // 404 handler - debe ir al final
 app.notFound(notFoundHandler);

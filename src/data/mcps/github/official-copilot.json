@@ -1,0 +1,40 @@
+{
+  "$schema": "../_schema.json",
+  "id": "github-copilot",
+  "name": "GitHub Copilot MCP",
+  "description": "Access GitHub repositories and code through Copilot MCP API",
+  "category": "development",
+  "icon": "github",
+  "logoUrl": "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+  "source": "official",
+  "maintainer": {
+    "name": "GitHub",
+    "url": "https://github.com",
+    "github": "github"
+  },
+  "status": "active",
+  "version": "1.0.0",
+  "transport": "streamable-http",
+  "inputs": {
+    "GITHUB_MCP_PAT": {
+      "label": "GitHub Personal Access Token",
+      "required": true,
+      "type": "password",
+      "description": "GitHub Personal Access Token for authentication"
+    }
+  },
+  "configuration": {
+    "template": {
+      "type": "streamable-http",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer ${GITHUB_MCP_PAT}"
+      }
+    }
+  },
+  "metadata": {
+    "homepage": "https://docs.github.com/en/copilot",
+    "addedAt": "2025-01-01",
+    "lastUpdated": "2025-01-01"
+  }
+}

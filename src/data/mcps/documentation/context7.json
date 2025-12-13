@@ -1,0 +1,32 @@
+{
+  "$schema": "../_schema.json",
+  "id": "context7",
+  "name": "Context7",
+  "description": "Access up-to-date documentation and code examples for any library",
+  "category": "documentation",
+  "icon": "book",
+  "logoUrl": "https://raw.githubusercontent.com/upstash/context7-mcp/main/logo.svg",
+  "source": "official",
+  "maintainer": {
+    "name": "Upstash",
+    "url": "https://upstash.com",
+    "github": "upstash"
+  },
+  "status": "active",
+  "version": "latest",
+  "transport": "stdio",
+  "inputs": {},
+  "configuration": {
+    "template": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp@latest"],
+      "env": {}
+    }
+  },
+  "metadata": {
+    "homepage": "https://github.com/upstash/context7-mcp",
+    "repository": "https://github.com/upstash/context7-mcp",
+    "addedAt": "2025-01-01",
+    "lastUpdated": "2025-01-01"
+  }
+}

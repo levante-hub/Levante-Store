@@ -1,0 +1,87 @@
+name: New MCP Request
+description: Request to add a new MCP to the catalog
+title: "[MCP Request]: "
+labels: ["mcp-request", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a new MCP! Please fill out the information below.
+
+  - type: input
+    id: service
+    attributes:
+      label: Service Name
+      description: The service this MCP connects to (e.g., Notion, Slack, Discord)
+      placeholder: e.g., Notion
+    validations:
+      required: true
+
+  - type: input
+    id: mcp-name
+    attributes:
+      label: MCP Name
+      description: Name of the MCP
+      placeholder: e.g., Notion MCP
+    validations:
+      required: true
+
+  - type: input
+    id: repository
+    attributes:
+      label: Repository / NPM Package
+      description: Link to the source code or npm package
+      placeholder: e.g., https://github.com/example/mcp or @example/mcp
+    validations:
+      required: true
+
+  - type: dropdown
+    id: type
+    attributes:
+      label: MCP Type
+      description: Is this an official MCP from the service provider or a community contribution?
+      options:
+        - Official (by service provider)
+        - Community (third-party)
+    validations:
+      required: true
+
+  - type: dropdown
+    id: transport
+    attributes:
+      label: Transport Type
+      description: How does this MCP communicate?
+      options:
+        - stdio (command-line)
+        - sse (Server-Sent Events)
+        - streamable-http (HTTP streaming)
+    validations:
+      required: true
+
+  - type: textarea
+    id: command
+    attributes:
+      label: Configuration
+      description: |
+        For stdio: Command and arguments (e.g., `npx -y @notion/mcp`)
+        For sse/http: URL endpoint (e.g., `https://api.example.com/mcp`)
+      placeholder: |
+        Command: npx
+        Args: -y @notion/mcp
+    validations:
+      required: true
+
+  - type: textarea
+    id: inputs
+    attributes:
+      label: Required Inputs
+      description: What credentials or configuration does the user need to provide?
+      placeholder: |
+        - NOTION_API_KEY (password): Your Notion API key
+        - WORKSPACE_ID (string): Your workspace identifier
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Information
+      description: Any other relevant information about this MCP
