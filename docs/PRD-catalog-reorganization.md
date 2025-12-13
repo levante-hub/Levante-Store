@@ -326,16 +326,7 @@ service-supabase:
   - src/data/mcps/supabase/**
 ```
 
-### 3. CODEOWNERS
-
-```
-# .github/CODEOWNERS
-src/data/mcps/supabase/ @supabase-team
-src/data/mcps/github/ @github-team
-src/data/mcps/**/community-* @levante-maintainers
-```
-
-### 4. Catálogo Web Auto-generado
+### 3. Catálogo Web Auto-generado
 
 Página estática generada en build con:
 - Lista de todos los MCPs
@@ -343,18 +334,86 @@ Página estática generada en build con:
 - Badges de estado
 - Links a PRs/Issues relacionados
 
-### 5. Testing Automático de MCPs
+### 4. Testing Automático de MCPs
+
+Utilizamos [MCP Inspector](https://github.com/modelcontextprotocol/inspector), la herramienta oficial de testing del protocolo MCP.
+
+#### Niveles de Validación
+
+| Nivel | Descripción | Automatizable |
+|-------|-------------|---------------|
+| 1. Schema | JSON válido según `_schema.json` | ✅ Siempre |
+| 2. Package | Comando/paquete npm existe | ✅ Siempre |
+| 3. Connection | MCP responde correctamente | ⚠️ Solo sin auth |
+
+#### GitHub Action
 
 ```yaml
-# GitHub Action to test new MCPs
-- name: Test MCP Connection
-  run: |
-    # Verify that the command exists
-    # Verify basic MCP response
-    # Report in the PR
+# .github/workflows/validate-mcps.yml
+name: Validate MCPs
+on: [pull_request]
+
+jobs:
+  validate-schema:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: npm ci
+      - run: npm run validate-mcps
+
+  test-connection:
+    runs-on: ubuntu-latest
+    needs: validate-schema
+    strategy:
+      matrix:
+        mcp: ${{ fromJson(needs.validate-schema.outputs.testable-mcps) }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Test MCP with Inspector
+        run: |
+          npx @modelcontextprotocol/inspector \
+            --cli ${{ matrix.mcp.command }} ${{ matrix.mcp.args }} \
+            --method tools/list \
+            --timeout 30000
 ```
 
-### 6. Estadísticas y Métricas
+#### Validación Local
+
+```bash
+# Test interactivo (abre UI en http://localhost:6274)
+npx @modelcontextprotocol/inspector npx -y @playwright/mcp@latest
+
+# Test CLI (para scripts)
+npx @modelcontextprotocol/inspector --cli npx -y @playwright/mcp@latest --method tools/list
+
+# Con variables de entorno
+npx @modelcontextprotocol/inspector -e API_KEY=xxx npx -y @some/mcp
+```
+
+#### Soporte por Transport
+
+| Transport | Comando |
+|-----------|---------|
+| **stdio** | `npx @modelcontextprotocol/inspector npx -y @playwright/mcp` |
+| **SSE** | `npx @modelcontextprotocol/inspector --transport sse --url http://example.com/sse` |
+| **HTTP** | `npx @modelcontextprotocol/inspector --transport http --url http://example.com/mcp` |
+
+#### Criterios de Validación
+
+| Tipo MCP | Test en CI | Criterio de éxito |
+|----------|------------|-------------------|
+| stdio sin auth | ✅ Completo | `tools/list` responde |
+| stdio con env vars | ⚠️ Requiere secrets | `tools/list` responde |
+| http/sse público | ✅ Completo | `tools/list` responde |
+| http/sse con auth | ✅ Parcial | Responde `401`/`403` = MCP válido |
+
+> **Nota**: Una respuesta `401 Unauthorized` o `403 Forbidden` confirma que el MCP existe y está operativo. La falta de credenciales no invalida el MCP.
+
+### 5. Estadísticas y Métricas
 
 - Tracking de instalaciones (opt-in)
 - MCPs más populares
@@ -402,3 +461,23 @@ Página estática generada en build con:
 | Oficial | `official.json` o `official-[variante].json` | `official.json`, `official-copilot.json` |
 | Comunidad | `community-[nombre].json` | `community-postgres-extra.json` |
 | ID del MCP | `[servicio]-[variante]` | `supabase-official`, `github-actions-community` |
+
+---
+
+## Mejoras Futuras
+
+### CODEOWNERS
+
+Cuando el proyecto escale y haya múltiples mantenedores, implementar auto-asignación de reviewers:
+
+```
+# .github/CODEOWNERS
+src/data/mcps/supabase/    @supabase-maintainer
+src/data/mcps/github/      @github-maintainer
+src/data/mcps/**/community-*  @levante-maintainers
+```
+
+Beneficios:
+- Auto-asignación de reviewers en PRs según archivos modificados
+- Protección: requiere aprobación del owner antes de merge
+- Escalabilidad: cada servicio puede tener su propio mantenedor
