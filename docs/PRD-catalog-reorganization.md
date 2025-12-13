@@ -71,10 +71,8 @@ Cada archivo `[nombre].json` contendrá UN solo MCP:
   },
   "status": "active",
   "version": "1.0.0",
-  "transport": "http",
-  "command": "",
-  "args": [],
-  "env": {
+  "transport": "streamable-http",
+  "inputs": {
     "SUPABASE_PROJECT_REF": {
       "label": "Supabase Project Reference",
       "required": true,
@@ -90,8 +88,8 @@ Cada archivo `[nombre].json` contendrá UN solo MCP:
   },
   "configuration": {
     "template": {
-      "type": "http",
-      "baseUrl": "https://mcp.supabase.com/mcp?project_ref=${SUPABASE_PROJECT_REF}",
+      "type": "streamable-http",
+      "url": "https://mcp.supabase.com/mcp?project_ref=${SUPABASE_PROJECT_REF}",
       "headers": {
         "Authorization": "Bearer ${SUPABASE_ACCESS_TOKEN}"
       }
@@ -111,10 +109,60 @@ Cada archivo `[nombre].json` contendrá UN solo MCP:
 | Campo | Tipo | Descripción |
 |-------|------|-------------|
 | `source` | `"official"` \| `"community"` | Origen del MCP (official = desarrollo oficial, community = desarrollo no oficial) |
+| `inputs` | object | Variables que el usuario debe proporcionar (agnóstico del transport) |
 | `maintainer` | object | Información del mantenedor |
 | `maintainer.github` | string | Usuario/org de GitHub para menciones |
 | `metadata.addedAt` | string (date) | Fecha de adición al catálogo |
 | `metadata.lastUpdated` | string (date) | Última actualización |
+
+### Uso de `inputs` según Transport
+
+Los `inputs` definen qué valores necesita el usuario. El `configuration.template` sigue el formato oficial del protocolo MCP:
+
+**STDIO** → variables de entorno al proceso:
+```json
+{
+  "transport": "stdio",
+  "inputs": { "NOTION_API_KEY": { "type": "password", ... } },
+  "configuration": {
+    "template": {
+      "command": "npx",
+      "args": ["-y", "@notion/mcp"],
+      "env": { "NOTION_API_KEY": "${NOTION_API_KEY}" }
+    }
+  }
+}
+```
+
+**SSE** → Server-Sent Events:
+```json
+{
+  "transport": "sse",
+  "inputs": { "API_TOKEN": { "type": "password", ... } },
+  "configuration": {
+    "template": {
+      "type": "sse",
+      "url": "https://api.example.com/mcp/sse",
+      "headers": { "Authorization": "Bearer ${API_TOKEN}" }
+    }
+  }
+}
+```
+
+**Streamable HTTP** → HTTP bidireccional:
+```json
+{
+  "transport": "streamable-http",
+  "inputs": { "API_TOKEN": { "type": "password", ... } },
+  "configuration": {
+    "template": {
+      "type": "streamable-http",
+      "url": "https://api.example.com/mcp",
+      "headers": { "Authorization": "Bearer ${API_TOKEN}" }
+    }
+  }
+}
+```
 
 ### Archivo _meta.json por Servicio
 
@@ -223,9 +271,10 @@ Para Cloudflare Pages, pre-agregar los JSONs durante el build:
 **Type**: [ ] Official [ ] Community
 
 ### Configuration
-- Transport: [ ] stdio [ ] http [ ] sse
-- Command:
-- Required environment variables:
+- Transport: [ ] stdio [ ] sse [ ] streamable-http
+- Command (stdio only):
+- URL (sse/http only):
+- Required inputs:
 
 ### Additional information
 ```
@@ -237,7 +286,7 @@ Para Cloudflare Pages, pre-agregar los JSONs durante el build:
 
 - [ ] Valid JSON according to schema
 - [ ] Tested locally
-- [ ] Complete env vars documentation
+- [ ] Complete inputs documentation
 - [ ] Logo/icon provided
 
 **Service**:
@@ -281,10 +330,10 @@ $ npm run add-mcp
 ? Create folder notion? Yes
 ? MCP name: notion-official
 ? Is it official or community? official
-? Transport (stdio/http/sse): stdio
+? Transport (stdio/sse/streamable-http): stdio
 ? Command: npx
 ? Arguments: -y @notionhq/mcp
-? Required environment variables? Yes
+? Required inputs? Yes
   ? Name: NOTION_API_KEY
   ? Label: Notion API Key
   ? Required: Yes
@@ -399,17 +448,17 @@ npx @modelcontextprotocol/inspector -e API_KEY=xxx npx -y @some/mcp
 | Transport | Comando |
 |-----------|---------|
 | **stdio** | `npx @modelcontextprotocol/inspector npx -y @playwright/mcp` |
-| **SSE** | `npx @modelcontextprotocol/inspector --transport sse --url http://example.com/sse` |
-| **HTTP** | `npx @modelcontextprotocol/inspector --transport http --url http://example.com/mcp` |
+| **sse** | `npx @modelcontextprotocol/inspector --transport sse --url http://example.com/sse` |
+| **streamable-http** | `npx @modelcontextprotocol/inspector --transport http --url http://example.com/mcp` |
 
 #### Criterios de Validación
 
 | Tipo MCP | Test en CI | Criterio de éxito |
 |----------|------------|-------------------|
-| stdio sin auth | ✅ Completo | `tools/list` responde |
-| stdio con env vars | ⚠️ Requiere secrets | `tools/list` responde |
-| http/sse público | ✅ Completo | `tools/list` responde |
-| http/sse con auth | ✅ Parcial | Responde `401`/`403` = MCP válido |
+| stdio sin inputs | ✅ Completo | `tools/list` responde |
+| stdio con inputs | ⚠️ Requiere secrets | `tools/list` responde |
+| sse/streamable-http público | ✅ Completo | `tools/list` responde |
+| sse/streamable-http con auth | ✅ Parcial | Responde `401`/`403` = MCP válido |
 
 > **Nota**: Una respuesta `401 Unauthorized` o `403 Forbidden` confirma que el MCP existe y está operativo. La falta de credenciales no invalida el MCP.
 
