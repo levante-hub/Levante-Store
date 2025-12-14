@@ -22,7 +22,7 @@ npm run deploy
 
 ### Base URL
 - **Desarrollo**: `http://localhost:5173/api`
-- **Producción**: `https://tu-dominio.pages.dev/api`
+- **Producción**: `https://services.levanteapp.com/api`
 
 ---
 
@@ -219,9 +219,9 @@ Para agregar esta API como proveedor en Levante, añade en `src/renderer/data/mc
   "description": "Custom MCP servers from Saúl's store",
   "icon": "star",
   "type": "api",
-  "endpoint": "https://tu-dominio.pages.dev/api/mcps.json",
+  "endpoint": "https://services.levanteapp.com/api/mcps.json",
   "enabled": true,
-  "homepage": "https://tu-dominio.pages.dev"
+  "homepage": "https://services.levanteapp.com"
 }
 ```
 

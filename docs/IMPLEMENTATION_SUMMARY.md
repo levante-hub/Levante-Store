@@ -180,9 +180,9 @@ En el archivo de Levante `src/renderer/data/mcpProviders.json`:
   "description": "Custom MCP servers from Saúl's store",
   "icon": "star",
   "type": "api",
-  "endpoint": "https://tu-dominio.pages.dev/api/mcps.json",
+  "endpoint": "https://services.levanteapp.com/api/mcps.json",
   "enabled": true,
-  "homepage": "https://tu-dominio.pages.dev"
+  "homepage": "https://services.levanteapp.com"
 }
 ```
 
@@ -284,7 +284,7 @@ if (provider.id === 'saul-store') {
 ```bash
 npm run deploy
 ```
-Esto publicará tu API en: `https://levante-store.pages.dev`
+Esto publicará tu API en: `https://services.levanteapp.com`
 
 ### 2. Actualizar URL en Catálogo
 Reemplaza `https://example.com` por tu dominio real en:

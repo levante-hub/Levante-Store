@@ -13,7 +13,7 @@ Este documento explica cómo **migrar el proveedor local de Levante a esta API**
 
 **Nueva Situación**:
 - Proveedor "Levante" con `type: "api"`
-- Consume desde `https://tu-dominio.pages.dev/api/mcps.json`
+- Consume desde `https://services.levanteapp.com/api/mcps.json`
 - **Mantiene el mismo formato**, por lo que no requiere normalización compleja
 
 ---
@@ -44,13 +44,11 @@ Este documento explica cómo **migrar el proveedor local de Levante a esta API**
   "description": "Official curated MCP servers",
   "icon": "home",
   "type": "api",
-  "endpoint": "https://levante-store.pages.dev/api/mcps.json",
+  "endpoint": "https://services.levanteapp.com/api/mcps.json",
   "enabled": true,
-  "homepage": "https://levante-store.pages.dev"
+  "homepage": "https://services.levanteapp.com"
 }
 ```
-
-**Nota**: Reemplaza `levante-store.pages.dev` con tu dominio real de Cloudflare Pages.
 
 ---
 
@@ -378,7 +376,7 @@ cat ~/.levante/mcp-cache/levante.json
 npm run deploy
 ```
 
-Obtendrás una URL tipo: `https://levante-store-abc123.pages.dev`
+La URL de producción es: `https://services.levanteapp.com`
 
 ### 5.4. Actualizar Levante a Producción
 
@@ -389,7 +387,7 @@ Obtendrás una URL tipo: `https://levante-store-abc123.pages.dev`
   "id": "levante",
   "name": "Levante",
   "type": "api",
-  "endpoint": "https://levante-store-abc123.pages.dev/api/mcps.json",
+  "endpoint": "https://services.levanteapp.com/api/mcps.json",
   "enabled": true
 }
 ```
@@ -435,7 +433,7 @@ UI llama syncProvider('levante')
     ↓
 IPC → Main Process
     ↓
-fetchFromAPI('https://levante-store.pages.dev/api/mcps.json')
+fetchFromAPI('https://services.levanteapp.com/api/mcps.json')
     ↓
 normalizeLevante() [opcional si formato coincide]
     ↓

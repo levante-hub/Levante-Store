@@ -125,7 +125,7 @@ Add to `src/renderer/data/mcpProviders.json`:
   "id": "levante-store",
   "name": "Levante MCP Store",
   "type": "api",
-  "endpoint": "https://your-domain.pages.dev/api/mcps.json",
+  "endpoint": "https://services.levanteapp.com/api/mcps.json",
   "enabled": true
 }
 ```
