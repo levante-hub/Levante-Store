@@ -19,7 +19,10 @@
   "configuration": {
     "template": {
       "command": "uvx",
-      "args": ["--from=docling-mcp", "docling-mcp-server"],
+      "args": [
+        "--from=docling-mcp",
+        "docling-mcp-server"
+      ],
       "env": {}
     }
   },
