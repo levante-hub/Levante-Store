@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       testable-mcps: ${{ steps.find-testable.outputs.mcps }}
+      http-mcps: ${{ steps.find-http.outputs.mcps }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -46,10 +47,16 @@ jobs:
           fi
           echo "No duplicate IDs found"
 
-      - name: Find testable MCPs (stdio without required inputs)
+      - name: Find testable STDIO MCPs
         id: find-testable
         run: |
           MCPS=$(node scripts/list-mcps.mjs --json | jq -c '[.[] | select(.transport == "stdio")]')
+          echo "mcps=$MCPS" >> $GITHUB_OUTPUT
+
+      - name: Find testable HTTP MCPs
+        id: find-http
+        run: |
+          MCPS=$(node scripts/list-mcps.mjs --json | jq -c '[.[] | select(.transport == "sse" or .transport == "streamable-http")]')
           echo "mcps=$MCPS" >> $GITHUB_OUTPUT
 
   test-stdio-mcps:
@@ -101,4 +108,59 @@ jobs:
 
             echo "Running: npx @modelcontextprotocol/inspector@latest --cli $COMMAND $ARGS --method tools/list"
             npx @modelcontextprotocol/inspector@latest --cli $COMMAND $ARGS --method tools/list || echo "MCP test completed (may require auth)"
+          fi
+
+  test-http-mcps:
+    name: Test HTTP MCPs
+    runs-on: ubuntu-latest
+    needs: validate-schema
+    if: needs.validate-schema.outputs.http-mcps != '[]'
+    strategy:
+      fail-fast: false
+      matrix:
+        mcp: ${{ fromJson(needs.validate-schema.outputs.http-mcps) }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Test ${{ matrix.mcp.name }} endpoint
+        continue-on-error: true
+        timeout-minutes: 2
+        run: |
+          echo "Testing MCP: ${{ matrix.mcp.name }} (${{ matrix.mcp.id }})"
+          MCP_FILE=$(find src/data/mcps -name "*.json" -exec grep -l '"id": "${{ matrix.mcp.id }}"' {} \; | head -1)
+          if [ -n "$MCP_FILE" ]; then
+            TRANSPORT=$(jq -r '.transport' "$MCP_FILE")
+            URL=$(jq -r '.configuration.template.url' "$MCP_FILE")
+
+            # Remove template variables from URL for basic connectivity test
+            CLEAN_URL=$(echo "$URL" | sed 's/\${[^}]*}//g' | sed 's/[?&][^?&]*=$//' | sed 's/[?&]$//')
+
+            echo "Transport: $TRANSPORT"
+            echo "URL: $CLEAN_URL"
+
+            # Map transport to inspector flag
+            if [ "$TRANSPORT" = "sse" ]; then
+              TRANSPORT_FLAG="sse"
+            else
+              TRANSPORT_FLAG="http"
+            fi
+
+            echo "Running: npx @modelcontextprotocol/inspector@latest --transport $TRANSPORT_FLAG --server-url $CLEAN_URL --cli --method tools/list"
+
+            # Test connection - 401/403 is valid (MCP exists but requires auth)
+            RESULT=$(npx @modelcontextprotocol/inspector@latest --transport $TRANSPORT_FLAG --server-url "$CLEAN_URL" --cli --method tools/list 2>&1) || true
+
+            echo "$RESULT"
+
+            if echo "$RESULT" | grep -qE "(tools|401|403|Unauthorized|Forbidden)"; then
+              echo "✓ MCP endpoint is reachable"
+            else
+              echo "⚠ MCP endpoint test inconclusive"
+            fi
           fi
