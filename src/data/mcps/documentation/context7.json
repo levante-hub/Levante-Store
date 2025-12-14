@@ -5,7 +5,7 @@
   "description": "Access up-to-date documentation and code examples for any library",
   "category": "documentation",
   "icon": "book",
-  "logoUrl": "https://raw.githubusercontent.com/upstash/context7-mcp/main/logo.svg",
+  "logoUrl": "https://context7.com/brand/context7-icon-green.svg",
   "source": "official",
   "maintainer": {
     "name": "Upstash",
@@ -19,7 +19,10 @@
   "configuration": {
     "template": {
       "command": "npx",
-      "args": ["-y", "@upstash/context7-mcp@latest"],
+      "args": [
+        "-y",
+        "@upstash/context7-mcp@latest"
+      ],
       "env": {}
     }
   },
