@@ -21,15 +21,26 @@
   "inputs": {
     "EXA_API_KEY": {
       "label": "Exa API Key",
-      "required": false,
+      "required": true,
       "type": "password",
       "description": "Your Exa API key from https://dashboard.exa.ai/api-keys"
+    },
+    "TOOLS": {
+      "label": "Enabled Tools",
+      "required": false,
+      "type": "string",
+      "default": "web_search_exa,get_code_context_exa",
+      "description": "Comma-separated list of tools to enable. Default tools (if omitted). All available tools: web_search_exa, get_code_context_exa, deep_search_exa, company_research_exa, crawling_exa, linkedin_search_exa, deep_researcher_start, deep_researcher_check"
     }
   },
   "configuration": {
     "template": {
       "command": "npx",
-      "args": ["-y", "exa-mcp-server@latest"],
+      "args": [
+        "-y",
+        "exa-mcp-server@latest",
+        "tools=${TOOLS}"
+      ],
       "env": {
         "EXA_API_KEY": "${EXA_API_KEY}"
       }
