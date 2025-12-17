@@ -1,5 +1,5 @@
 {
-	"name": "levante-store",
+	"name": "levante-api-services",
 	"type": "module",
 	"scripts": {
 		"dev": "vite --port 5180",

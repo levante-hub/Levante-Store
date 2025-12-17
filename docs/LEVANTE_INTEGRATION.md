@@ -60,9 +60,9 @@ Tu API actual devuelve:
 {
   "version": "1.0.0",
   "provider": {
-    "id": "Levante-store",
-    "name": "Levante MCP store",
-    "homepage": "https://example.com"
+    "id": "levante-api-services",
+    "name": "Levante API Services",
+    "homepage": "https://services.levanteapp.com"
   },
   "servers": [...]
 }

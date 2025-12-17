@@ -1,5 +1,5 @@
 name: Bug Report
-description: Report a bug with the Levante Store API or an MCP listing
+description: Report a bug with the Levante API Services or an MCP listing
 title: "[Bug]: "
 labels: ["bug", "triage"]
 body:

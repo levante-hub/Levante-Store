@@ -1,4 +1,4 @@
-# 📋 Resumen de Implementación: Saúl MCP Store API
+# 📋 Resumen de Implementación: Levante API Services
 
 ## ✅ Implementación Completada
 
@@ -9,7 +9,7 @@ Se ha implementado exitosamente una API RESTful con Hono para exponer un catálo
 ## 🏗️ Estructura Actual
 
 ```
-levante-store/
+levante-api-services/
 ├── src/
 │   ├── index.tsx                    ✅ App principal con CORS, logging, error handling
 │   ├── renderer.tsx                 ✅ JSX renderer

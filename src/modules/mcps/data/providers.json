@@ -2,7 +2,7 @@
     "providers": [
         {
             "id": "levante",
-            "name": "Levante Store",
+            "name": "Levante API Services",
             "description": "Catálogo oficial de MCPs de Levante",
             "type": "local",
             "endpoint": "local://mcps.json",

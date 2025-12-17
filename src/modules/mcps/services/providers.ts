@@ -95,7 +95,7 @@ export class MCPProviderService {
         const response = await fetch(provider.endpoint, {
             headers: {
                 Accept: 'application/json',
-                'User-Agent': 'Levante-Store/1.0',
+                'User-Agent': 'Levante-API-Services/1.0',
             },
         });
 

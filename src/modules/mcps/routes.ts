@@ -15,8 +15,8 @@ mcps.get('/mcps.json', (c) => {
   const response: MCPStoreResponse = {
     version: '1.0.0',
     provider: {
-      id: 'levante-store',
-      name: 'Levante MCP Store',
+      id: 'levante-api-services',
+      name: 'Levante API Services',
       homepage: 'https://github.com/levante-hub/Levante-Store',
     },
     servers,

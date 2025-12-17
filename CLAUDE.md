@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Levante Store is a RESTful API backend that exposes a catalog of MCP (Model Context Protocol) servers. Built with TypeScript and Hono framework, deployed on Vercel.
+Levante API Services is a RESTful API backend for the Levante ecosystem. Currently provides a catalog of MCP (Model Context Protocol) servers. Built with TypeScript and Hono framework, deployed on Vercel.
 
 ## Commands
 

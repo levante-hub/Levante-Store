@@ -1,26 +1,26 @@
 export const openApiSpec = {
   openapi: '3.0.3',
   info: {
-    title: 'Levante MCP Store API',
+    title: 'Levante API Services',
     description: `
-API for discovering and retrieving MCP (Model Context Protocol) server configurations.
+API services for the Levante ecosystem.
 
-## Overview
-The Levante MCP Store provides a catalog of MCP servers organized by service providers.
+## MCP Catalog
+Discover and retrieve MCP (Model Context Protocol) server configurations organized by service providers.
 Each MCP includes configuration templates for different transport types (stdio, sse, streamable-http).
 
-## Source Types
+### Source Types
 - **official**: MCPs created and maintained by the service provider
 - **community**: MCPs created by third-party contributors
 
-## Transport Types
+### Transport Types
 - **stdio**: Command-line based MCPs (local execution)
 - **sse**: Server-Sent Events based MCPs (HTTP streaming)
 - **streamable-http**: HTTP-based MCPs with streaming support
     `,
     version: '1.0.0',
     contact: {
-      name: 'Levante MCP Store',
+      name: 'Levante API Services',
       url: 'https://github.com/levante-hub/Levante-Store',
     },
     license: {
@@ -249,11 +249,11 @@ Each MCP includes configuration templates for different transport types (stdio, 
         properties: {
           id: {
             type: 'string',
-            example: 'levante-store',
+            example: 'levante-api-services',
           },
           name: {
             type: 'string',
-            example: 'Levante MCP Store',
+            example: 'Levante API Services',
           },
           homepage: {
             type: 'string',

@@ -1,6 +1,6 @@
-# Levante MCP Store
+# Levante API Services
 
-API RESTful para exponer un catálogo de servidores MCP (Model Context Protocol) consumible por [Levante](https://github.com/levante-hub/levante).
+API services para el ecosistema [Levante](https://github.com/levante-hub/levante). Actualmente incluye el catálogo de servidores MCP (Model Context Protocol).
 
 ## Quick Start
 
@@ -77,28 +77,9 @@ npm run list-mcps -- --json
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for how to add new MCPs.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for general contribution guidelines.
 
-### Quick Guide
-
-1. Fork the repository
-2. Create/use a service folder: `src/modules/mcps/data/mcps/[service]/`
-3. Add your MCP: `[name].json`
-4. Validate: `npm run validate-mcps`
-5. Open a PR
-
-### MCP Types
-
-- **Official**: `official.json` - MCPs from service providers
-- **Community**: `community-[name].json` - Third-party MCPs
-
-### Transport Types
-
-| Transport | Description |
-|-----------|-------------|
-| `stdio` | Command-line MCPs (local execution) |
-| `sse` | Server-Sent Events (HTTP streaming) |
-| `streamable-http` | HTTP with bidirectional streaming |
+**Want to add a new MCP?** Follow the [MCP Contributing Guide](docs/contributing-mcps.md).
 
 ## Current Catalog
 
@@ -123,8 +104,8 @@ Add to `src/renderer/data/mcpProviders.json`:
 
 ```json
 {
-  "id": "levante-store",
-  "name": "Levante MCP Store",
+  "id": "levante-api-services",
+  "name": "Levante API Services",
   "type": "api",
   "endpoint": "https://services.levanteapp.com/api/mcps.json",
   "enabled": true
@@ -133,7 +114,9 @@ Add to `src/renderer/data/mcpProviders.json`:
 
 ## Documentation
 
-- [CONTRIBUTING.md](./CONTRIBUTING.md) - How to contribute
+- [CONTRIBUTING.md](./CONTRIBUTING.md) - General contribution guide
+- [docs/contributing-mcps.md](./docs/contributing-mcps.md) - Add new MCPs to the catalog
+- [docs/API.md](./docs/API.md) - API documentation
 - [docs/PRD-catalog-reorganization.md](./docs/PRD-catalog-reorganization.md) - Architecture decisions
 
 ## License
