@@ -3,7 +3,7 @@ import type {
     AitemplContentStructure,
     MCPServerDescriptor,
     InputDefinition,
-} from '../../types/mcps';
+} from '../../types';
 
 /**
  * Normaliza la respuesta de AITempl al formato MCPServerDescriptor

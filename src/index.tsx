@@ -1,8 +1,8 @@
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import { swaggerUI } from '@hono/swagger-ui'
-import mcps from './routes/mcps'
-import { errorHandler, notFoundHandler } from './middleware/errorHandler'
+import mcpsModule from './modules/mcps/routes'
+import { errorHandler, notFoundHandler } from './shared/middleware/errorHandler'
 import { openApiSpec } from './openapi'
 
 const app = new Hono();
@@ -30,7 +30,7 @@ app.use('*', async (c, next) => {
 app.use('*', errorHandler);
 
 // Montar rutas de API
-app.route('/api', mcps);
+app.route('/api', mcpsModule);
 
 // OpenAPI spec endpoint
 app.get('/openapi.json', (c) => {

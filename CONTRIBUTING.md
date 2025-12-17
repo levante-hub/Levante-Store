@@ -4,7 +4,7 @@ This guide helps you (or your AI assistant) add new MCPs to the catalog.
 
 ## Quick Start
 
-1. Create/use a service folder: `src/data/mcps/[service]/`
+1. Create/use a service folder: `src/modules/mcps/data/mcps/[service]/`
 2. Add `_meta.json` if it's a new service
 3. Add your MCP file: `official.json` or `community-[name].json`
 4. Validate: `npm run validate-mcps`
@@ -16,7 +16,7 @@ This guide helps you (or your AI assistant) add new MCPs to the catalog.
 
 **Playwright MCP** - No credentials required:
 
-`src/data/mcps/playwright/_meta.json`:
+`src/modules/mcps/data/mcps/playwright/_meta.json`:
 ```json
 {
   "service": "playwright",
@@ -28,7 +28,7 @@ This guide helps you (or your AI assistant) add new MCPs to the catalog.
 }
 ```
 
-`src/data/mcps/playwright/official.json`:
+`src/modules/mcps/data/mcps/playwright/official.json`:
 ```json
 {
   "$schema": "../_schema.json",
@@ -68,7 +68,7 @@ This guide helps you (or your AI assistant) add new MCPs to the catalog.
 
 **Docling MCP** - Python package with `--from` flag:
 
-`src/data/mcps/docling/_meta.json`:
+`src/modules/mcps/data/mcps/docling/_meta.json`:
 ```json
 {
   "service": "docling",
@@ -80,7 +80,7 @@ This guide helps you (or your AI assistant) add new MCPs to the catalog.
 }
 ```
 
-`src/data/mcps/docling/official.json`:
+`src/modules/mcps/data/mcps/docling/official.json`:
 ```json
 {
   "$schema": "../_schema.json",

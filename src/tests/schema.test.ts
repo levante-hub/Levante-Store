@@ -2,8 +2,8 @@ import { describe, it, expect } from 'vitest'
 import Ajv from 'ajv'
 import addFormats from 'ajv-formats'
 import app from '../index'
-import type { MCPStoreResponse } from '../types/mcps'
-import schema from '../data/mcps/_schema.json'
+import type { MCPStoreResponse } from '../modules/mcps/types'
+import schema from '../modules/mcps/data/mcps/_schema.json'
 
 describe('MCP Schema Validation', () => {
   const ajv = new Ajv({ allErrors: true, strict: false })

@@ -6,24 +6,34 @@ Se ha implementado exitosamente una API RESTful con Hono para exponer un catálo
 
 ---
 
-## 🏗️ Estructura Creada
+## 🏗️ Estructura Actual
 
 ```
 levante-store/
 ├── src/
 │   ├── index.tsx                    ✅ App principal con CORS, logging, error handling
-│   ├── renderer.tsx                 ✅ JSX renderer (existente)
-│   ├── routes/
-│   │   └── mcps.ts                  ✅ Rutas API (/mcps.json, /mcps/:id)
-│   ├── types/
-│   │   └── mcps.ts                  ✅ Interfaces TypeScript
-│   ├── data/
-│   │   └── mcps.json                ✅ Catálogo con 5 servidores
-│   └── middleware/
-│       └── errorHandler.ts          ✅ Manejo global de errores
-├── API.md                           ✅ Documentación completa
-├── IMPLEMENTATION_SUMMARY.md        ✅ Este archivo
-└── levante_mcp_registry.md          ✅ Arquitectura de referencia
+│   ├── renderer.tsx                 ✅ JSX renderer
+│   ├── openapi.ts                   ✅ OpenAPI specification
+│   ├── shared/
+│   │   └── middleware/
+│   │       └── errorHandler.ts      ✅ Manejo global de errores
+│   ├── modules/
+│   │   └── mcps/                    ✅ Módulo MCP
+│   │       ├── routes.ts            ✅ Rutas API
+│   │       ├── types.ts             ✅ Interfaces TypeScript
+│   │       ├── services/
+│   │       │   ├── catalogAggregator.ts
+│   │       │   ├── providers.ts
+│   │       │   └── normalizers/
+│   │       └── data/
+│   │           ├── providers.json
+│   │           └── mcps/            ✅ Catálogo de servidores
+│   └── tests/
+├── docs/
+│   ├── API.md                       ✅ Documentación completa
+│   ├── IMPLEMENTATION_SUMMARY.md    ✅ Este archivo
+│   └── levante_mcp_registry.md      ✅ Arquitectura de referencia
+└── CLAUDE.md                        ✅ Guía para Claude Code
 ```
 
 ---
@@ -32,7 +42,7 @@ levante-store/
 
 ### 1. ✅ Formato JSON Externo Definido
 
-**Archivo**: `src/types/mcps.ts`
+**Archivo**: `src/modules/mcps/types.ts`
 
 ```typescript
 interface MCPStoreResponse {
@@ -52,7 +62,7 @@ interface MCPServerDescriptor {
 
 ### 2. ✅ Catálogo Estático Inicial
 
-**Archivo**: `src/data/mcps.json`
+**Carpeta**: `src/modules/mcps/data/mcps/`
 
 Incluye 5 servidores MCP de ejemplo:
 - 📁 **Filesystem** - Acceso al sistema de archivos
@@ -70,7 +80,7 @@ Cada uno con:
 
 ### 3. ✅ Rutas API Implementadas
 
-**Archivo**: `src/routes/mcps.ts`
+**Archivo**: `src/modules/mcps/routes.ts`
 
 | Endpoint | Método | Descripción | Headers |
 |----------|--------|-------------|---------|
@@ -100,7 +110,7 @@ Permite consumo desde cualquier origen (Levante, web, etc.).
 
 ### 5. ✅ Manejo Global de Errores
 
-**Archivo**: `src/middleware/errorHandler.ts`
+**Archivo**: `src/shared/middleware/errorHandler.ts`
 
 - ✅ Try/catch global con `errorHandler` middleware
 - ✅ Respuestas JSON estructuradas con timestamp

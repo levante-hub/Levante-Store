@@ -139,23 +139,29 @@ Alias que redirige a `/api/mcps.json` (por conveniencia).
 
 ```
 src/
-├── index.tsx              # Aplicación principal Hono
-├── renderer.tsx           # JSX renderer (UI)
-├── routes/
-│   └── mcps.ts           # Rutas de la API MCP
-├── types/
-│   └── mcps.ts           # Interfaces TypeScript
-├── data/
-│   └── mcps.json         # Catálogo estático de MCPs
-└── middleware/
-    └── errorHandler.ts   # Manejo global de errores
+├── index.tsx                 # Aplicación principal Hono
+├── renderer.tsx              # JSX renderer (UI)
+├── openapi.ts                # OpenAPI specification
+├── shared/
+│   └── middleware/
+│       └── errorHandler.ts   # Manejo global de errores
+├── modules/
+│   └── mcps/                 # Módulo MCP
+│       ├── routes.ts         # Rutas de la API MCP
+│       ├── types.ts          # Interfaces TypeScript
+│       ├── services/
+│       │   ├── catalogAggregator.ts
+│       │   └── normalizers/
+│       └── data/
+│           └── mcps/         # Catálogo de MCPs (por servicio)
+└── tests/
 ```
 
 ---
 
 ## 🔧 Formato del Catálogo
 
-El archivo `src/data/mcps.json` sigue este esquema:
+Los archivos en `src/modules/mcps/data/mcps/` siguen este esquema:
 
 ### `MCPStoreResponse`
 
@@ -243,8 +249,8 @@ Levante consumirá automáticamente el endpoint `/api/mcps.json` y normalizará 
 
 ### Agregar un Nuevo Servidor MCP
 
-1. Edita `src/data/mcps.json`
-2. Añade un nuevo objeto en el array `servers`:
+1. Crea/usa una carpeta de servicio: `src/modules/mcps/data/mcps/[service]/`
+2. Añade un archivo JSON para el MCP:
 
 ```json
 {
@@ -278,7 +284,7 @@ Levante consumirá automáticamente el endpoint `/api/mcps.json` y normalizará 
 
 ### Cambiar el Max-Age del Cache
 
-Edita los headers en `src/routes/mcps.ts`:
+Edita los headers en `src/modules/mcps/routes.ts`:
 
 ```typescript
 c.header('Cache-Control', 'public, max-age=7200'); // 2 horas

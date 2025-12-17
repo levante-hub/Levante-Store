@@ -2,7 +2,7 @@ import type {
     ProviderConfig,
     MCPServerDescriptor,
     AitemplResponse,
-} from '../types/mcps';
+} from '../types';
 import { normalizeAitempl } from './normalizers/aitempl';
 import { catalogAggregator } from './catalogAggregator';
 import providersConfig from '../data/providers.json';

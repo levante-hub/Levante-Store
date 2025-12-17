@@ -35,21 +35,25 @@ npm run deploy
 ## Project Structure
 
 ```
-src/
-├── data/mcps/              # MCP catalog
-│   ├── _schema.json        # JSON Schema for validation
-│   ├── documentation/      # Documentation MCPs
-│   │   ├── _meta.json
-│   │   ├── context7.json
-│   │   └── microsoft-docs.json
-│   ├── github/
-│   ├── playwright/
-│   └── supabase/
-├── services/
-│   └── catalogAggregator.ts
-├── routes/
-│   └── mcps.ts
-└── index.tsx
+├── public/static/            # Static assets
+├── scripts/                  # CLI tools
+│   ├── validate-mcps.mjs
+│   └── list-mcps.mjs
+└── src/
+    ├── index.tsx             # Main Hono app
+    ├── shared/               # Shared code across modules
+    │   └── middleware/
+    ├── modules/              # Feature modules
+    │   └── mcps/             # MCP catalog module
+    │       ├── routes.ts
+    │       ├── types.ts
+    │       ├── services/
+    │       │   ├── catalogAggregator.ts
+    │       │   └── normalizers/
+    │       └── data/
+    │           ├── providers.json
+    │           └── mcps/     # MCP JSON files
+    └── tests/
 ```
 
 ## CLI Commands
@@ -78,7 +82,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for how to add new MCPs.
 ### Quick Guide
 
 1. Fork the repository
-2. Create/use a service folder: `src/data/mcps/[service]/`
+2. Create/use a service folder: `src/modules/mcps/data/mcps/[service]/`
 3. Add your MCP: `[name].json`
 4. Validate: `npm run validate-mcps`
 5. Open a PR

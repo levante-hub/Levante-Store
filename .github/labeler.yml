@@ -1,34 +1,34 @@
 # Official MCPs
 mcp-official:
   - changed-files:
-      - any-glob-to-any-file: 'src/data/mcps/**/official*.json'
+      - any-glob-to-any-file: 'src/modules/mcps/data/mcps/**/official*.json'
 
 # Community MCPs
 mcp-community:
   - changed-files:
-      - any-glob-to-any-file: 'src/data/mcps/**/community*.json'
+      - any-glob-to-any-file: 'src/modules/mcps/data/mcps/**/community*.json'
 
 # Service-specific labels
 service-supabase:
   - changed-files:
-      - any-glob-to-any-file: 'src/data/mcps/supabase/**'
+      - any-glob-to-any-file: 'src/modules/mcps/data/mcps/supabase/**'
 
 service-github:
   - changed-files:
-      - any-glob-to-any-file: 'src/data/mcps/github/**'
+      - any-glob-to-any-file: 'src/modules/mcps/data/mcps/github/**'
 
 service-playwright:
   - changed-files:
-      - any-glob-to-any-file: 'src/data/mcps/playwright/**'
+      - any-glob-to-any-file: 'src/modules/mcps/data/mcps/playwright/**'
 
 service-documentation:
   - changed-files:
-      - any-glob-to-any-file: 'src/data/mcps/documentation/**'
+      - any-glob-to-any-file: 'src/modules/mcps/data/mcps/documentation/**'
 
 # Schema changes
 schema:
   - changed-files:
-      - any-glob-to-any-file: 'src/data/mcps/_schema.json'
+      - any-glob-to-any-file: 'src/modules/mcps/data/mcps/_schema.json'
 
 # Documentation
 documentation:
