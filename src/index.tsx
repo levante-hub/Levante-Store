@@ -1,9 +1,9 @@
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import { swaggerUI } from '@hono/swagger-ui'
-import mcpsModule from './modules/mcps/routes'
-import { errorHandler, notFoundHandler } from './shared/middleware/errorHandler'
-import { openApiSpec } from './openapi'
+import mcpsModule from '@/modules/mcps/routes'
+import { errorHandler, notFoundHandler } from '@/shared/middleware/errorHandler'
+import { openApiSpec } from '@/openapi'
 
 const app = new Hono();
 

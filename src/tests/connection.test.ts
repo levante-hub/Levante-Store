@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll } from 'vitest'
 import { spawn } from 'node:child_process'
-import app from '../index'
-import type { MCPStoreResponse, MCPServerDescriptor } from '../types/mcps'
+import app from '@/index'
+import type { MCPStoreResponse, MCPServerDescriptor } from '@/modules/mcps/types'
 
 interface StdioTemplate {
   command: string

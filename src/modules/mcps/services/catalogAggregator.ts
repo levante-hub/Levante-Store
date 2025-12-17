@@ -1,4 +1,4 @@
-import type { MCPServerDescriptor, ServiceMeta, SourceType } from '../types';
+import type { MCPServerDescriptor, ServiceMeta, SourceType } from '@/modules/mcps/types';
 
 // Cargar dinámicamente todos los archivos JSON de MCPs
 const mcpModules = import.meta.glob<{ default: MCPServerDescriptor }>(

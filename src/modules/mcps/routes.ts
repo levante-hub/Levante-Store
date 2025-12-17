@@ -1,6 +1,6 @@
 import { Hono } from 'hono';
-import type { MCPStoreResponse, SourceType } from './types';
-import { catalogAggregator } from './services/catalogAggregator';
+import type { MCPStoreResponse, SourceType } from '@/modules/mcps/types';
+import { catalogAggregator } from '@/modules/mcps/services/catalogAggregator';
 
 const mcps = new Hono();
 

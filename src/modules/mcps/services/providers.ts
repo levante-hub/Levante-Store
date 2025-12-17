@@ -2,10 +2,10 @@ import type {
     ProviderConfig,
     MCPServerDescriptor,
     AitemplResponse,
-} from '../types';
-import { normalizeAitempl } from './normalizers/aitempl';
-import { catalogAggregator } from './catalogAggregator';
-import providersConfig from '../data/providers.json';
+} from '@/modules/mcps/types';
+import { normalizeAitempl } from '@/modules/mcps/services/normalizers/aitempl';
+import { catalogAggregator } from '@/modules/mcps/services/catalogAggregator';
+import providersConfig from '@/modules/mcps/data/providers.json';
 
 /**
  * Servicio principal para gestión de proveedores MCP

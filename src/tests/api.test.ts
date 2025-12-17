@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
-import app from '../index'
-import type { MCPStoreResponse, MCPServerDescriptor, ServicesResponse } from '../modules/mcps/types'
+import app from '@/index'
+import type { MCPStoreResponse, MCPServerDescriptor, ServicesResponse } from '@/modules/mcps/types'
 
 interface StatsResponse {
   total: number
