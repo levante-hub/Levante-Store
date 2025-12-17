@@ -1,0 +1,29 @@
+{
+  "$schema": "../_schema.json",
+  "id": "vercel",
+  "name": "Vercel MCP",
+  "description": "Interact with Vercel projects, deployments, and documentation using OAuth authentication. For project-specific context, use the URL format: https://mcp.vercel.com/teams/{team-slug}/projects/{project-slug}",
+  "category": "development",
+  "icon": "cloud",
+  "logoUrl": "https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png",
+  "source": "official",
+  "maintainer": {
+    "name": "Vercel",
+    "url": "https://vercel.com",
+    "github": "vercel"
+  },
+  "status": "active",
+  "version": "1.0.0",
+  "transport": "streamable-http",
+  "configuration": {
+    "template": {
+      "type": "streamable-http",
+      "url": "https://mcp.vercel.com"
+    }
+  },
+  "metadata": {
+    "homepage": "https://vercel.com/docs/mcp/vercel-mcp",
+    "addedAt": "2025-12-17",
+    "lastUpdated": "2025-12-17"
+  }
+}

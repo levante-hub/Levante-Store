@@ -1,0 +1,8 @@
+{
+  "service": "vercel",
+  "displayName": "Vercel",
+  "description": "MCPs for Vercel deployment and project management",
+  "website": "https://vercel.com",
+  "icon": "cloud",
+  "category": "development"
+}
