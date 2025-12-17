@@ -6,8 +6,8 @@ Thanks for your interest in contributing to Levante API Services!
 
 ```bash
 # Clone the repository
-git clone https://github.com/levante-hub/Levante-Store.git
-cd Levante-Store
+git clone https://github.com/levante-hub/Levante-Store.git levante-api-services
+cd levante-api-services
 
 # Install dependencies
 npm install
