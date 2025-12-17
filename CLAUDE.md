@@ -83,3 +83,9 @@ The MCPs module aggregates MCP servers from multiple sources via a provider arch
 1. Add provider config to `src/modules/mcps/data/providers.json`
 2. Create normalizer in `src/modules/mcps/services/normalizers/`
 3. Register normalizer in `MCPProviderService`
+
+## Contributing
+
+- [CONTRIBUTING.md](./CONTRIBUTING.md) - General contribution guide (setup, PR process, code style)
+- [docs/contributing-mcps.md](./docs/contributing-mcps.md) - Add new MCP servers to the catalog
+- [docs/API.md](./docs/API.md) - API documentation
