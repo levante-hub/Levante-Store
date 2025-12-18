@@ -1,0 +1,8 @@
+{
+  "service": "n8n",
+  "displayName": "n8n",
+  "description": "Workflow automation platform with visual editor and 400+ integrations",
+  "website": "https://n8n.io",
+  "icon": "n8n",
+  "category": "automation"
+}
