@@ -1,0 +1,35 @@
+{
+  "$schema": "../_schema.json",
+  "id": "google-cloud-compute-engine",
+  "name": "Compute Engine",
+  "description": "Virtual machine instances and infrastructure management on Google Cloud",
+  "category": "development",
+  "icon": "google-cloud",
+  "logoUrl": "https://www.gstatic.com/pantheon/images/compute/compute_icon_512.png",
+  "source": "official",
+  "maintainer": {
+    "name": "Google Cloud",
+    "url": "https://cloud.google.com/compute",
+    "github": "googleapis"
+  },
+  "status": "active",
+  "version": "latest",
+  "transport": "streamable-http",
+  "auth": {
+    "type": "oauth",
+    "note": "Uses OAuth 2.0 with Google Cloud IAM. Authenticate via your browser with Google Cloud credentials. Tokens are stored locally and never shared."
+  },
+  "inputs": {},
+  "configuration": {
+    "template": {
+      "type": "streamable-http",
+      "url": "https://compute.googleapis.com/mcp"
+    }
+  },
+  "metadata": {
+    "homepage": "https://cloud.google.com/compute/docs/reference/mcp",
+    "repository": "https://github.com/googleapis/google-cloud-python",
+    "addedAt": "2025-12-18",
+    "lastUpdated": "2025-12-18"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "$schema": "../_schema.json",
+  "id": "google-cloud-security",
+  "name": "Security Command Center",
+  "description": "Security posture management and threat detection with Security Command Center and Chronicle",
+  "category": "development",
+  "icon": "google-cloud",
+  "logoUrl": "https://www.gstatic.com/pantheon/images/securitycenter/securitycenter_icon_512.png",
+  "source": "official",
+  "maintainer": {
+    "name": "Google Cloud",
+    "url": "https://cloud.google.com/security-command-center",
+    "github": "google"
+  },
+  "status": "active",
+  "version": "latest",
+  "transport": "stdio",
+  "auth": {
+    "type": "oauth",
+    "note": "Uses Google Cloud Application Default Credentials. Authenticate via gcloud CLI before use."
+  },
+  "inputs": {
+    "CHRONICLE_PROJECT_ID": {
+      "label": "Chronicle Project ID",
+      "required": false,
+      "type": "string",
+      "description": "Your Google Cloud project ID for Chronicle (if using Security Operations)"
+    },
+    "CHRONICLE_CUSTOMER_ID": {
+      "label": "Chronicle Customer ID",
+      "required": false,
+      "type": "string",
+      "description": "Your Chronicle customer ID (if using Security Operations)"
+    },
+    "CHRONICLE_REGION": {
+      "label": "Chronicle Region",
+      "required": false,
+      "type": "string",
+      "description": "Your Chronicle region (if using Security Operations)"
+    }
+  },
+  "configuration": {
+    "template": {
+      "command": "uv",
+      "args": ["tool", "run", "scc-mcp"],
+      "env": {
+        "CHRONICLE_PROJECT_ID": "${CHRONICLE_PROJECT_ID}",
+        "CHRONICLE_CUSTOMER_ID": "${CHRONICLE_CUSTOMER_ID}",
+        "CHRONICLE_REGION": "${CHRONICLE_REGION}"
+      }
+    }
+  },
+  "metadata": {
+    "homepage": "https://cloud.google.com/security-command-center",
+    "repository": "https://github.com/google/mcp-security",
+    "addedAt": "2025-12-18",
+    "lastUpdated": "2025-12-18"
+  }
+}

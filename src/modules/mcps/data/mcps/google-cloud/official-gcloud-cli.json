@@ -1,0 +1,36 @@
+{
+  "$schema": "../_schema.json",
+  "id": "google-cloud-gcloud-cli",
+  "name": "gcloud CLI",
+  "description": "Execute Google Cloud CLI commands for managing infrastructure and services",
+  "category": "development",
+  "icon": "google-cloud",
+  "logoUrl": "https://www.gstatic.com/images/branding/product/2x/google_cloud_96dp.png",
+  "source": "official",
+  "maintainer": {
+    "name": "Google Cloud",
+    "url": "https://cloud.google.com/sdk/gcloud",
+    "github": "googleapis"
+  },
+  "status": "active",
+  "version": "latest",
+  "transport": "stdio",
+  "auth": {
+    "type": "oauth",
+    "note": "Uses your active gcloud account credentials. Authenticate via gcloud CLI before use."
+  },
+  "inputs": {},
+  "configuration": {
+    "template": {
+      "command": "npx",
+      "args": ["-y", "@google-cloud/gcloud-mcp"],
+      "env": {}
+    }
+  },
+  "metadata": {
+    "homepage": "https://cloud.google.com/sdk/gcloud",
+    "repository": "https://github.com/googleapis/gcloud-mcp/tree/main/packages/gcloud-mcp",
+    "addedAt": "2025-12-18",
+    "lastUpdated": "2025-12-18"
+  }
+}

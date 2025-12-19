@@ -1,0 +1,36 @@
+{
+  "$schema": "../_schema.json",
+  "id": "google-cloud-storage",
+  "name": "Cloud Storage",
+  "description": "Object storage for files, backups, and large-scale data with read/write operations",
+  "category": "development",
+  "icon": "google-cloud",
+  "logoUrl": "https://www.gstatic.com/pantheon/images/storage/storage_icon_512.png",
+  "source": "official",
+  "maintainer": {
+    "name": "Google Cloud",
+    "url": "https://cloud.google.com/storage",
+    "github": "googleapis"
+  },
+  "status": "active",
+  "version": "latest",
+  "transport": "stdio",
+  "auth": {
+    "type": "oauth",
+    "note": "Uses Google Cloud Application Default Credentials. Authenticate via gcloud CLI before use. Safe tools (read-only) enabled by default."
+  },
+  "inputs": {},
+  "configuration": {
+    "template": {
+      "command": "npx",
+      "args": ["-y", "@google-cloud/storage-mcp"],
+      "env": {}
+    }
+  },
+  "metadata": {
+    "homepage": "https://cloud.google.com/storage/docs",
+    "repository": "https://github.com/googleapis/gcloud-mcp/tree/main/packages/storage-mcp",
+    "addedAt": "2025-12-18",
+    "lastUpdated": "2025-12-18"
+  }
+}

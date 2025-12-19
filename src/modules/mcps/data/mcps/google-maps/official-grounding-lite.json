@@ -1,0 +1,44 @@
+{
+  "$schema": "../_schema.json",
+  "id": "google-maps-grounding-lite",
+  "name": "Grounding Lite",
+  "description": "Real-time geospatial services including place search, weather lookup, and route computation",
+  "category": "development",
+  "icon": "google-maps",
+  "logoUrl": "https://www.gstatic.com/images/branding/product/2x/maps_96dp.png",
+  "source": "official",
+  "maintainer": {
+    "name": "Google",
+    "url": "https://developers.google.com/maps",
+    "github": "googlemaps"
+  },
+  "status": "active",
+  "version": "latest",
+  "transport": "streamable-http",
+  "auth": {
+    "type": "api-key"
+  },
+  "inputs": {
+    "GOOGLE_MAPS_API_KEY": {
+      "label": "Google Maps API Key",
+      "required": true,
+      "type": "password",
+      "description": "API key with Maps Grounding Lite API enabled from Google Cloud Console"
+    }
+  },
+  "configuration": {
+    "template": {
+      "type": "streamable-http",
+      "url": "https://mapstools.googleapis.com/mcp",
+      "headers": {
+        "X-Goog-Api-Key": "${GOOGLE_MAPS_API_KEY}"
+      }
+    }
+  },
+  "metadata": {
+    "homepage": "https://developers.google.com/maps/ai/grounding-lite",
+    "repository": "https://github.com/googlemaps",
+    "addedAt": "2025-12-18",
+    "lastUpdated": "2025-12-18"
+  }
+}
