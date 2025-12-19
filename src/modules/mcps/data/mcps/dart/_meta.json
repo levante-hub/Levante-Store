@@ -1,0 +1,8 @@
+{
+  "service": "dart",
+  "displayName": "Dart",
+  "description": "Dart and Flutter development tools and framework",
+  "website": "https://dart.dev",
+  "icon": "dart",
+  "category": "development"
+}

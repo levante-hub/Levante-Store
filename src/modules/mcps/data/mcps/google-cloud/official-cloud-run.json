@@ -1,0 +1,60 @@
+{
+  "$schema": "../_schema.json",
+  "id": "google-cloud-cloud-run",
+  "name": "Cloud Run",
+  "description": "Serverless container platform for deploying and scaling containerized applications",
+  "category": "development",
+  "icon": "google-cloud",
+  "logoUrl": "https://www.gstatic.com/pantheon/images/run/run_icon_512.png",
+  "source": "official",
+  "maintainer": {
+    "name": "Google Cloud",
+    "url": "https://cloud.google.com/run",
+    "github": "GoogleCloudPlatform"
+  },
+  "status": "active",
+  "version": "latest",
+  "transport": "stdio",
+  "auth": {
+    "type": "oauth",
+    "note": "Uses Google Cloud Application Default Credentials. Authenticate via gcloud CLI before use."
+  },
+  "inputs": {
+    "GOOGLE_CLOUD_PROJECT": {
+      "label": "Project ID",
+      "required": true,
+      "type": "string",
+      "description": "Your Google Cloud project ID"
+    },
+    "GOOGLE_CLOUD_REGION": {
+      "label": "Region",
+      "required": false,
+      "type": "string",
+      "default": "us-central1",
+      "description": "Default deployment region (e.g., us-central1, europe-west1)"
+    },
+    "DEFAULT_SERVICE_NAME": {
+      "label": "Service Name",
+      "required": false,
+      "type": "string",
+      "description": "Default Cloud Run service name"
+    }
+  },
+  "configuration": {
+    "template": {
+      "command": "npx",
+      "args": ["-y", "@google-cloud/cloud-run-mcp"],
+      "env": {
+        "GOOGLE_CLOUD_PROJECT": "${GOOGLE_CLOUD_PROJECT}",
+        "GOOGLE_CLOUD_REGION": "${GOOGLE_CLOUD_REGION}",
+        "DEFAULT_SERVICE_NAME": "${DEFAULT_SERVICE_NAME}"
+      }
+    }
+  },
+  "metadata": {
+    "homepage": "https://cloud.google.com/run/docs",
+    "repository": "https://github.com/GoogleCloudPlatform/cloud-run-mcp",
+    "addedAt": "2025-12-18",
+    "lastUpdated": "2025-12-18"
+  }
+}
