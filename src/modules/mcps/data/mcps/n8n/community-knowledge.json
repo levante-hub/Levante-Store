@@ -37,7 +37,7 @@
     "template": {
       "command": "npx",
       "args": [
-        "n8n-mcp"
+        "n8n-mcp@latest"
       ],
       "env": {
         "MCP_MODE": "stdio",
@@ -49,7 +49,7 @@
     }
   },
   "metadata": {
-    "homepage": "https://github.com/czlonkowski/n8n-mcp",
+    "homepage": "https://www.n8n-mcp.com",
     "repository": "https://github.com/czlonkowski/n8n-mcp",
     "author": "czlonkowski",
     "addedAt": "2025-12-19",
