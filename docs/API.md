@@ -24,6 +24,8 @@ npm run deploy
 - **Desarrollo**: `http://localhost:5173/api`
 - **Producción**: `https://services.levanteapp.com/api`
 
+> Nota: además de las categorías estándar, el catálogo acepta la categoría temática `christmas` para MCPs navideños temporales.
+
 ---
 
 ### `GET /api/mcps.json`

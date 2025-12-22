@@ -1,0 +1,27 @@
+{
+  "$schema": "../_schema.json",
+  "id": "christmas-flight-search",
+  "name": "Buscador de vuelos navideños",
+  "description": "Flight search (e.g., Madrid -> London) focused on Christmas travel",
+  "category": "christmas",
+  "icon": "plane",
+  "logoUrl": "https://play-lh.googleusercontent.com/fLKdtQX0Prg2fPgQ_WjjRquWH7aykggKXwVEw9PFE9Ef4XukJtAz8P7CKt_N0GhTWRw=w240-h480-rw",
+  "source": "community",
+  "maintainer": {
+    "name": "Community"
+  },
+  "status": "active",
+  "version": "latest",
+  "transport": "streamable-http",
+  "inputs": {},
+  "configuration": {
+    "template": {
+      "type": "streamable-http",
+      "url": "https://mcp-ui.kiwi.com/"
+    }
+  },
+  "metadata": {
+    "addedAt": "2025-12-18",
+    "lastUpdated": "2025-12-18"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "../_schema.json",
+  "id": "christmas-study-buddy",
+  "name": "Study Buddy Flashcards",
+  "description": "Christmas-themed flashcards and study helper",
+  "category": "christmas",
+  "icon": "book",
+  "logoUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtPK7ManaHPM55tK6JdNMOOwvZiXp-b0C46g&s",
+  "source": "community",
+  "maintainer": {
+    "name": "Community"
+  },
+  "status": "active",
+  "version": "latest",
+  "transport": "streamable-http",
+  "inputs": {},
+  "configuration": {
+    "template": {
+      "type": "streamable-http",
+      "url": "https://study-buddy.alpic.live"
+    }
+  },
+  "metadata": {
+    "addedAt": "2025-12-18",
+    "lastUpdated": "2025-12-18"
+  }
+}

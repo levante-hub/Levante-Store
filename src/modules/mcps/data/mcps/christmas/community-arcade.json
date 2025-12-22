@@ -1,0 +1,27 @@
+{
+  "$schema": "../_schema.json",
+  "id": "christmas-arcade",
+  "name": "Arcade Navideño",
+  "description": "Collection of Christmas-themed arcade mini games (includes Doom) via MCP",
+  "category": "christmas",
+  "icon": "gamepad",
+  "logoUrl": "https://image.api.playstation.com/vulcan/ap/rnd/202009/2814/2SuRSOLGDyuN7yOnDspiCkLu.png",
+  "source": "community",
+  "maintainer": {
+    "name": "Community"
+  },
+  "status": "active",
+  "version": "latest",
+  "transport": "streamable-http",
+  "inputs": {},
+  "configuration": {
+    "template": {
+      "type": "streamable-http",
+      "url": "https://arcade-xmcp.alpic.live/"
+    }
+  },
+  "metadata": {
+    "addedAt": "2025-12-18",
+    "lastUpdated": "2025-12-18"
+  }
+}

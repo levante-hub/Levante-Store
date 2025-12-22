@@ -1,0 +1,27 @@
+{
+  "$schema": "../_schema.json",
+  "id": "christmas-3-en-raya",
+  "name": "3 en Raya (Navidad)",
+  "description": "Christmas-themed tic-tac-toe game via MCP",
+  "category": "christmas",
+  "icon": "grid",
+  "logoUrl": "https://i0.wp.com/helenecolinet.com/wp-content/uploads/2017/04/3-en-raya.png?fit=300%2C300&ssl=1",
+  "source": "community",
+  "maintainer": {
+    "name": "Community"
+  },
+  "status": "active",
+  "version": "latest",
+  "transport": "streamable-http",
+  "inputs": {},
+  "configuration": {
+    "template": {
+      "type": "streamable-http",
+      "url": "https://rabona.ignaciojimenezrocabado.workers.dev/mcp"
+    }
+  },
+  "metadata": {
+    "addedAt": "2025-12-18",
+    "lastUpdated": "2025-12-18"
+  }
+}

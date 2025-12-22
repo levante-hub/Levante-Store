@@ -1,0 +1,27 @@
+{
+  "$schema": "../_schema.json",
+  "id": "christmas-times-up",
+  "name": "Time's Up",
+  "description": "Time's Up party game in a Christmas edition",
+  "category": "christmas",
+  "icon": "timer",
+  "logoUrl": "https://cdn.svc.asmodee.net/production-rprod/storage/games/times-up-party/times-up-party-1605623151UpmEM.png",
+  "source": "community",
+  "maintainer": {
+    "name": "Community"
+  },
+  "status": "active",
+  "version": "latest",
+  "transport": "streamable-http",
+  "inputs": {},
+  "configuration": {
+    "template": {
+      "type": "streamable-http",
+      "url": "https://times-up.alpic.live"
+    }
+  },
+  "metadata": {
+    "addedAt": "2025-12-18",
+    "lastUpdated": "2025-12-18"
+  }
+}

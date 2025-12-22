@@ -1,0 +1,27 @@
+{
+  "$schema": "../_schema.json",
+  "id": "christmas-fifa-predictions",
+  "name": "FIFA Predictions 2026",
+  "description": "Christmas-themed football predictions for the 2026 World Cup",
+  "category": "christmas",
+  "icon": "trophy",
+  "logoUrl": "https://pbs.twimg.com/profile_images/1604770276050452480/yTCcLt7m_400x400.jpg",
+  "source": "community",
+  "maintainer": {
+    "name": "Community"
+  },
+  "status": "active",
+  "version": "latest",
+  "transport": "streamable-http",
+  "inputs": {},
+  "configuration": {
+    "template": {
+      "type": "streamable-http",
+      "url": "https://worldcup-2026-mcp.ignaciojimenezrocabado.workers.dev/mcp"
+    }
+  },
+  "metadata": {
+    "addedAt": "2025-12-18",
+    "lastUpdated": "2025-12-18"
+  }
+}

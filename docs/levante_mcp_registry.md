@@ -4,6 +4,8 @@
 
 Levante implementa un sistema de **MCP Registry** que permite descubrir e instalar servidores MCP desde múltiples fuentes externas. Este documento describe cómo funcionan los proveedores de MCPs y cómo se transforma la información externa al formato interno de Levante.
 
+Nota: el catálogo admite la categoría temática `christmas` para MCPs navideños temporales además de las categorías estándar.
+
 ## Arquitectura de Proveedores
 
 ### 1. Definición de Proveedores
