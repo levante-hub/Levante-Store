@@ -1,0 +1,27 @@
+{
+  "$schema": "../_schema.json",
+  "id": "christmas-personal-chef",
+  "name": "Personal Chef",
+  "description": "Personal chef for Christmas menus and recipes",
+  "category": "christmas",
+  "icon": "chef-hat",
+  "logoUrl": "https://static.vecteezy.com/system/resources/thumbnails/052/793/073/small/chef-logo-design-vector.jpg",
+  "source": "community",
+  "maintainer": {
+    "name": "Community"
+  },
+  "status": "active",
+  "version": "latest",
+  "transport": "streamable-http",
+  "inputs": {},
+  "configuration": {
+    "template": {
+      "type": "streamable-http",
+      "url": "https://personal-chef.alpic.live"
+    }
+  },
+  "metadata": {
+    "addedAt": "2025-12-18",
+    "lastUpdated": "2025-12-18"
+  }
+}

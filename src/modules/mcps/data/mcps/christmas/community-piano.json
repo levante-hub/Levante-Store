@@ -1,0 +1,27 @@
+{
+  "$schema": "../_schema.json",
+  "id": "christmas-piano",
+  "name": "Piano Navideño",
+  "description": "Interactive piano with Christmas flair",
+  "category": "christmas",
+  "icon": "music",
+  "logoUrl": "https://www.virtualdrumming.com/drums/drum-lessons-images/virtual-drums-online-piano.jpg",
+  "source": "community",
+  "maintainer": {
+    "name": "Community"
+  },
+  "status": "active",
+  "version": "latest",
+  "transport": "streamable-http",
+  "inputs": {},
+  "configuration": {
+    "template": {
+      "type": "streamable-http",
+      "url": "https://piano.alpic.live"
+    }
+  },
+  "metadata": {
+    "addedAt": "2025-12-18",
+    "lastUpdated": "2025-12-18"
+  }
+}

@@ -27,7 +27,7 @@
     },
     "category": {
       "type": "string",
-      "enum": ["documentation", "development", "database", "automation", "ai", "communication", "productivity", "mcp-ui", "other"],
+      "enum": ["documentation", "development", "database", "automation", "ai", "communication", "productivity", "mcp-ui", "christmas", "other"],
       "description": "Category for organizing MCPs"
     },
     "icon": {
