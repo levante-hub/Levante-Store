@@ -1,0 +1,8 @@
+{
+  "service": "cloudflare",
+  "displayName": "Cloudflare",
+  "description": "MCPs for Cloudflare services including Workers, R2, KV, and edge computing",
+  "website": "https://cloudflare.com",
+  "icon": "cloud",
+  "category": "development"
+}
