@@ -12,6 +12,11 @@ class SupabaseAnnouncementService {
     const supabaseUrl = process.env.SUPABASE_URL;
     const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
+    console.log('[SupabaseClient] Loading environment variables...');
+    console.log('[SupabaseClient] All env vars:', Object.keys(process.env));
+    console.log('[SupabaseClient] SUPABASE_URL:', supabaseUrl ? `${supabaseUrl.substring(0, 30)}...` : 'NOT SET');
+    console.log('[SupabaseClient] SUPABASE_SERVICE_ROLE_KEY:', supabaseServiceRoleKey ? `${supabaseServiceRoleKey.substring(0, 10)}...` : 'NOT SET');
+
     if (!supabaseUrl || !supabaseServiceRoleKey) {
       throw new Error('Missing Supabase environment variables: SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are required');
     }
