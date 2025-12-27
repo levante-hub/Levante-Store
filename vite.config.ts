@@ -9,6 +9,9 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src')
     }
   },
+  define: {
+    'process.env': 'process.env'
+  },
   plugins: [
     !process.env.VITEST && devServer({
       entry: 'src/index.tsx'
