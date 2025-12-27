@@ -14,7 +14,8 @@ export default defineConfig({
       entry: 'src/index.tsx'
     }),
     build({
-      entry: 'src/index.tsx'
+      entry: 'src/index.tsx',
+      serverless: true
     })
   ],
   test: {
