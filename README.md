@@ -77,7 +77,7 @@ npm run list-mcps -- --json
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for general contribution guidelines.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for general contribution guidelines
 
 **Want to add a new MCP?** Follow the [MCP Contributing Guide](docs/contributing-mcps.md).
 
