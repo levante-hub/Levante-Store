@@ -1,5 +1,5 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
-import type { Announcement, AnnouncementCategory } from '@/modules/announcements/types';
+import type { Announcement, AnnouncementCategory, AnnouncementRaw, Language } from '@/modules/announcements/types';
 
 class SupabaseAnnouncementService {
   private client: SupabaseClient | null = null;
@@ -20,7 +20,17 @@ class SupabaseAnnouncementService {
     return this.client;
   }
 
-  async getLatestAnnouncementByCategory(category: AnnouncementCategory): Promise<Announcement | null> {
+  private localizeAnnouncement(raw: AnnouncementRaw, language: Language): Announcement {
+    return {
+      id: raw.id,
+      title: language === 'es' ? raw.title_es : raw.title_en,
+      full_text: language === 'es' ? raw.full_text_es : raw.full_text_en,
+      category: raw.category,
+      created_at: raw.created_at,
+    };
+  }
+
+  async getLatestAnnouncementByCategory(category: AnnouncementCategory, language: Language): Promise<Announcement | null> {
     const client = this.getClient();
     const { data, error } = await client
       .from('announcements')
@@ -38,12 +48,12 @@ class SupabaseAnnouncementService {
       throw new Error(`Failed to fetch announcement: ${error.message}`);
     }
 
-    return data;
+    return this.localizeAnnouncement(data as AnnouncementRaw, language);
   }
 
-  async getLatestAnnouncementsByCategories(categories: AnnouncementCategory[]): Promise<Announcement[]> {
+  async getLatestAnnouncementsByCategories(categories: AnnouncementCategory[], language: Language): Promise<Announcement[]> {
     const promises = categories.map(category =>
-      this.getLatestAnnouncementByCategory(category)
+      this.getLatestAnnouncementByCategory(category, language)
     );
 
     const results = await Promise.all(promises);

@@ -251,6 +251,26 @@ Each MCP includes configuration templates for different transport types (stdio, 
               },
             },
           },
+          {
+            name: 'language',
+            in: 'query',
+            description: 'Language for the announcement content',
+            required: true,
+            schema: {
+              type: 'string',
+              enum: ['es', 'en'],
+            },
+            examples: {
+              spanish: {
+                value: 'es',
+                summary: 'Spanish',
+              },
+              english: {
+                value: 'en',
+                summary: 'English',
+              },
+            },
+          },
         ],
         responses: {
           '200': {

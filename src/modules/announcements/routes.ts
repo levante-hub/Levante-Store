@@ -1,5 +1,5 @@
 import { Hono } from 'hono';
-import type { AnnouncementCategory, AnnouncementResponse, AnnouncementsResponse } from '@/modules/announcements/types';
+import type { AnnouncementCategory, AnnouncementResponse, AnnouncementsResponse, Language } from '@/modules/announcements/types';
 import { supabaseAnnouncementService } from '@/modules/announcements/services/supabaseClient';
 
 const announcements = new Hono();
@@ -8,12 +8,29 @@ const announcements = new Hono();
 announcements.get('/announcements', async (c) => {
   try {
     const categoryParam = c.req.query('category');
+    const languageParam = c.req.query('language');
 
     if (!categoryParam) {
       return c.json({ error: 'Category parameter is required' }, 400);
     }
 
-    const validCategories: AnnouncementCategory[] = ['announcement', 'privacy', 'landing', 'all'];
+    if (!languageParam) {
+      return c.json({ error: 'Language parameter is required' }, 400);
+    }
+
+    const validCategories: AnnouncementCategory[] = ['announcement', 'privacy', 'landing', 'app'];
+    const validLanguages: Language[] = ['es', 'en'];
+
+    // Validate language
+    if (!validLanguages.includes(languageParam as Language)) {
+      return c.json({
+        error: 'Invalid language',
+        invalidLanguage: languageParam,
+        validLanguages
+      }, 400);
+    }
+
+    const language = languageParam as Language;
 
     // Split by comma to support multiple categories
     const categories = categoryParam
@@ -40,7 +57,7 @@ announcements.get('/announcements', async (c) => {
 
     // Single category - return single announcement
     if (categories.length === 1) {
-      const data = await supabaseAnnouncementService.getLatestAnnouncementByCategory(categories[0]);
+      const data = await supabaseAnnouncementService.getLatestAnnouncementByCategory(categories[0], language);
       const response: AnnouncementResponse = {
         announcement: data,
       };
@@ -48,7 +65,7 @@ announcements.get('/announcements', async (c) => {
     }
 
     // Multiple categories - return array of announcements
-    const data = await supabaseAnnouncementService.getLatestAnnouncementsByCategories(categories);
+    const data = await supabaseAnnouncementService.getLatestAnnouncementsByCategories(categories, language);
     const response: AnnouncementsResponse = {
       announcements: data,
       total: data.length,

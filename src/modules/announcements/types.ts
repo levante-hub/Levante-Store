@@ -1,7 +1,21 @@
 // Announcement category type matching Supabase enum
-export type AnnouncementCategory = 'announcement' | 'privacy' | 'landing' | 'all';
+export type AnnouncementCategory = 'announcement' | 'privacy' | 'landing' | 'app';
 
-// Announcement interface matching the Supabase table structure
+// Supported languages
+export type Language = 'es' | 'en';
+
+// Raw announcement from Supabase (with localized fields)
+export interface AnnouncementRaw {
+  id: string;
+  title_es: string;
+  title_en: string;
+  full_text_es: string;
+  full_text_en: string;
+  category: AnnouncementCategory;
+  created_at: string;
+}
+
+// Announcement interface for API response (localized)
 export interface Announcement {
   id: string;
   title: string;
