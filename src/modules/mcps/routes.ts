@@ -1,6 +1,24 @@
 import { Hono } from 'hono';
-import type { MCPStoreResponse, SourceType } from '@/modules/mcps/types';
+import type {
+  MCPServerDescriptor,
+  MCPStoreResponse,
+  SourceType,
+} from '@/modules/mcps/types';
 import { catalogAggregator } from '@/modules/mcps/services/catalogAggregator';
+import { normalizeName } from '@/shared/utils/nameNormalizer';
+
+/**
+ * Normalizes server names to be compatible with function name requirements.
+ * Some MCP clients (like Google/Gemini) require function names to follow strict rules.
+ */
+function normalizeServerNames(
+  servers: MCPServerDescriptor[]
+): MCPServerDescriptor[] {
+  return servers.map((server) => ({
+    ...server,
+    name: normalizeName(server.name),
+  }));
+}
 
 const mcps = new Hono();
 
@@ -11,6 +29,9 @@ mcps.get('/mcps.json', (c) => {
   let servers = sourceFilter
     ? catalogAggregator.getBySource(sourceFilter)
     : catalogAggregator.aggregateAll();
+
+  // Normalize names for compatibility with strict function name requirements
+  servers = normalizeServerNames(servers);
 
   const response: MCPStoreResponse = {
     version: '1.0.0',
@@ -58,12 +79,15 @@ mcps.get('/mcps/stats', (c) => {
 // GET /mcps/service/:service → MCPs from a specific service
 mcps.get('/mcps/service/:service', (c) => {
   const serviceName = c.req.param('service');
-  const servers = catalogAggregator.getByService(serviceName);
+  let servers = catalogAggregator.getByService(serviceName);
   const serviceMeta = catalogAggregator.getServiceMeta(serviceName);
 
   if (servers.length === 0) {
     return c.json({ error: 'Service not found', service: serviceName }, 404);
   }
+
+  // Normalize names for compatibility with strict function name requirements
+  servers = normalizeServerNames(servers);
 
   const response: MCPStoreResponse = {
     version: '1.0.0',
@@ -90,10 +114,16 @@ mcps.get('/mcps/:id', (c) => {
     return c.json({ error: 'MCP server not found', id }, 404);
   }
 
+  // Normalize name for compatibility with strict function name requirements
+  const normalizedServer = {
+    ...server,
+    name: normalizeName(server.name),
+  };
+
   c.header('Cache-Control', 'public, max-age=3600');
   c.header('Content-Type', 'application/json');
 
-  return c.json(server);
+  return c.json(normalizedServer);
 });
 
 // GET /mcps → Redirect to /mcps.json
