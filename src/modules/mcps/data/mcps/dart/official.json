@@ -1,0 +1,32 @@
+{
+  "$schema": "../_schema.json",
+  "id": "dart",
+  "name": "Dart",
+  "description": "Dart and Flutter development tools including project analysis, testing, hot reload, and package management",
+  "category": "development",
+  "icon": "dart",
+  "logoUrl": "https://dart.dev/assets/img/logo/logo-white-text.svg",
+  "source": "official",
+  "maintainer": {
+    "name": "Dart",
+    "url": "https://dart.dev",
+    "github": "dart-lang"
+  },
+  "status": "active",
+  "version": "latest",
+  "transport": "stdio",
+  "inputs": {},
+  "configuration": {
+    "template": {
+      "command": "dart",
+      "args": ["mcp-server"],
+      "env": {}
+    }
+  },
+  "metadata": {
+    "homepage": "https://dart.dev",
+    "repository": "https://github.com/dart-lang/ai/tree/main/pkgs/dart_mcp_server",
+    "addedAt": "2025-12-18",
+    "lastUpdated": "2025-12-18"
+  }
+}

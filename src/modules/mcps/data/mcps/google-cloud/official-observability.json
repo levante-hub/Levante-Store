@@ -1,0 +1,36 @@
+{
+  "$schema": "../_schema.json",
+  "id": "google-cloud-observability",
+  "name": "Cloud Observability",
+  "description": "Monitoring, logging, tracing, and error reporting for Google Cloud services",
+  "category": "development",
+  "icon": "google-cloud",
+  "logoUrl": "https://www.gstatic.com/pantheon/images/operations/operations_icon_512.png",
+  "source": "official",
+  "maintainer": {
+    "name": "Google Cloud",
+    "url": "https://cloud.google.com/products/operations",
+    "github": "googleapis"
+  },
+  "status": "active",
+  "version": "latest",
+  "transport": "stdio",
+  "auth": {
+    "type": "oauth",
+    "note": "Uses Google Cloud Application Default Credentials. Authenticate via gcloud CLI before use."
+  },
+  "inputs": {},
+  "configuration": {
+    "template": {
+      "command": "npx",
+      "args": ["-y", "@google-cloud/observability-mcp"],
+      "env": {}
+    }
+  },
+  "metadata": {
+    "homepage": "https://cloud.google.com/products/operations",
+    "repository": "https://github.com/googleapis/gcloud-mcp/tree/main/packages/observability-mcp",
+    "addedAt": "2025-12-18",
+    "lastUpdated": "2025-12-18"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "service": "google-maps",
+  "displayName": "Google Maps",
+  "description": "Geospatial and location-based services from Google Maps Platform",
+  "website": "https://developers.google.com/maps",
+  "icon": "google-maps",
+  "category": "development"
+}

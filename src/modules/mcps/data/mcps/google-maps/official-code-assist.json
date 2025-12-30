@@ -1,0 +1,32 @@
+{
+  "$schema": "../_schema.json",
+  "id": "google-maps-code-assist",
+  "name": "Code Assist",
+  "description": "Developer toolkit for Google Maps Platform integration with code examples and documentation",
+  "category": "development",
+  "icon": "google-maps",
+  "logoUrl": "https://www.gstatic.com/images/branding/product/2x/maps_96dp.png",
+  "source": "official",
+  "maintainer": {
+    "name": "Google",
+    "url": "https://developers.google.com/maps",
+    "github": "googlemaps"
+  },
+  "status": "active",
+  "version": "latest",
+  "transport": "stdio",
+  "inputs": {},
+  "configuration": {
+    "template": {
+      "command": "npx",
+      "args": ["-y", "@googlemaps/code-assist-mcp@latest"],
+      "env": {}
+    }
+  },
+  "metadata": {
+    "homepage": "https://developers.google.com/maps/ai/mcp",
+    "repository": "https://github.com/googlemaps",
+    "addedAt": "2025-12-18",
+    "lastUpdated": "2025-12-18"
+  }
+}
