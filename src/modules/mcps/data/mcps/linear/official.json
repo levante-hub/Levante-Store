@@ -1,0 +1,30 @@
+{
+  "$schema": "../_schema.json",
+  "id": "linear",
+  "name": "Linear",
+  "description": "Find, create, and update issues, projects, and comments in Linear",
+  "category": "productivity",
+  "icon": "linear",
+  "logoUrl": "https://linear.app/static/apple-touch-icon.png?v=2",
+  "source": "official",
+  "maintainer": {
+    "name": "Linear",
+    "url": "https://linear.app",
+    "github": "linear"
+  },
+  "status": "active",
+  "version": "latest",
+  "transport": "streamable-http",
+  "inputs": {},
+  "configuration": {
+    "template": {
+      "type": "streamable-http",
+      "url": "https://mcp.linear.app/mcp"
+    }
+  },
+  "metadata": {
+    "homepage": "https://linear.app/docs/mcp",
+    "addedAt": "2025-12-17",
+    "lastUpdated": "2025-12-17"
+  }
+}
