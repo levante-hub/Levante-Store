@@ -42,6 +42,7 @@ export interface MCPServerDescriptor {
   $schema?: string;
   id: string;
   name: string;
+  displayName?: string; // Human-readable name for UI display
   description: string;
   category: string;
   icon: string;

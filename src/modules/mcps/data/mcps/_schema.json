@@ -18,7 +18,12 @@
     "name": {
       "type": "string",
       "minLength": 1,
-      "description": "Display name for the MCP"
+      "description": "Function-safe identifier for the MCP (normalized for API compatibility)"
+    },
+    "displayName": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Human-readable display name for UI purposes"
     },
     "description": {
       "type": "string",

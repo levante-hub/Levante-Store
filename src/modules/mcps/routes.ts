@@ -10,12 +10,14 @@ import { normalizeName } from '@/shared/utils/nameNormalizer';
 /**
  * Normalizes server names to be compatible with function name requirements.
  * Some MCP clients (like Google/Gemini) require function names to follow strict rules.
+ * Preserves the original name in displayName for UI purposes.
  */
 function normalizeServerNames(
   servers: MCPServerDescriptor[]
 ): MCPServerDescriptor[] {
   return servers.map((server) => ({
     ...server,
+    displayName: server.displayName || server.name,
     name: normalizeName(server.name),
   }));
 }
@@ -115,8 +117,10 @@ mcps.get('/mcps/:id', (c) => {
   }
 
   // Normalize name for compatibility with strict function name requirements
+  // Preserve original name in displayName for UI purposes
   const normalizedServer = {
     ...server,
+    displayName: server.displayName || server.name,
     name: normalizeName(server.name),
   };
 
