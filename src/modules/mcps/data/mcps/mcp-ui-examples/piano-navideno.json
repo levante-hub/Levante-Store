@@ -1,11 +1,11 @@
 {
   "$schema": "../_schema.json",
-  "id": "christmas-ski-shop",
-  "name": "Ski Shop",
-  "description": "Winter/Christmas-themed ski gear shop",
-  "category": "christmas",
-  "icon": "shopping-bag",
-  "logoUrl": "https://image.api.playstation.com/vulcan/ap/rnd/202403/0912/907cd3c5b22bc4f03861726ef461cdcba103e2d7271bcd02.png",
+  "id": "piano-navideno",
+  "name": "Piano Navideño",
+  "description": "Interactive piano with Christmas flair",
+  "category": "mcp-ui",
+  "icon": "music",
+  "logoUrl": "https://www.virtualdrumming.com/drums/drum-lessons-images/virtual-drums-online-piano.jpg",
   "source": "community",
   "maintainer": {
     "name": "Community"
@@ -17,7 +17,7 @@
   "configuration": {
     "template": {
       "type": "streamable-http",
-      "url": "https://ski-shop.alpic.live"
+      "url": "https://piano.alpic.live"
     }
   },
   "metadata": {
