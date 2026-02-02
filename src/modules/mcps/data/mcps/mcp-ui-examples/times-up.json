@@ -1,11 +1,11 @@
 {
   "$schema": "../_schema.json",
-  "id": "christmas-piano",
-  "name": "Piano Navideño",
-  "description": "Interactive piano with Christmas flair",
-  "category": "christmas",
-  "icon": "music",
-  "logoUrl": "https://www.virtualdrumming.com/drums/drum-lessons-images/virtual-drums-online-piano.jpg",
+  "id": "times-up",
+  "name": "Time's Up",
+  "description": "Time's Up party game in a Christmas edition",
+  "category": "mcp-ui",
+  "icon": "timer",
+  "logoUrl": "https://cdn.svc.asmodee.net/production-rprod/storage/games/times-up-party/times-up-party-1605623151UpmEM.png",
   "source": "community",
   "maintainer": {
     "name": "Community"
@@ -17,7 +17,7 @@
   "configuration": {
     "template": {
       "type": "streamable-http",
-      "url": "https://piano.alpic.live"
+      "url": "https://times-up.alpic.live"
     }
   },
   "metadata": {
