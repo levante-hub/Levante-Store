@@ -1,0 +1,8 @@
+{
+  "service": "pubmed",
+  "displayName": "PubMed",
+  "description": "Biomedical literature search and research",
+  "website": "https://pubmed.ncbi.nlm.nih.gov",
+  "icon": "pubmed",
+  "category": "documentation"
+}

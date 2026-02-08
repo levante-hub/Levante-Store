@@ -1,0 +1,32 @@
+{
+  "$schema": "../_schema.json",
+  "id": "pubmed",
+  "name": "PubMed",
+  "description": "Search and retrieve biomedical literature from PubMed/MEDLINE database",
+  "category": "documentation",
+  "icon": "pubmed",
+  "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/US-NLM-PubMed-Logo.svg/1280px-US-NLM-PubMed-Logo.svg.png",
+  "source": "official",
+  "maintainer": {
+    "name": "PubMed MCP",
+    "github": "mcp-pubmed"
+  },
+  "status": "active",
+  "version": "latest",
+  "transport": "stdio",
+  "inputs": {},
+  "configuration": {
+    "template": {
+      "command": "uvx",
+      "args": [
+        "pubmedmcp@latest"
+      ],
+      "env": {}
+    }
+  },
+  "metadata": {
+    "homepage": "https://pubmed.ncbi.nlm.nih.gov",
+    "addedAt": "2025-02-08",
+    "lastUpdated": "2025-02-08"
+  }
+}
