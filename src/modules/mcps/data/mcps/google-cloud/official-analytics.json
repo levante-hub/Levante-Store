@@ -1,0 +1,52 @@
+{
+  "$schema": "../_schema.json",
+  "id": "google-cloud-analytics",
+  "name": "Google Analytics",
+  "description": "Web and app analytics for tracking user behavior, traffic, and engagement metrics",
+  "category": "ai",
+  "icon": "google-cloud",
+  "logoUrl": "https://www.gstatic.com/analytics-suite/header/suite/v2/ic_analytics.svg",
+  "source": "official",
+  "maintainer": {
+    "name": "Google",
+    "url": "https://analytics.google.com",
+    "github": "googleanalytics"
+  },
+  "status": "active",
+  "version": "latest",
+  "transport": "stdio",
+  "auth": {
+    "type": "oauth",
+    "note": "Uses Google Cloud Application Default Credentials with read-only access. Authenticate via gcloud CLI before use."
+  },
+  "inputs": {
+    "GOOGLE_APPLICATION_CREDENTIALS": {
+      "label": "Credentials Path",
+      "required": true,
+      "type": "string",
+      "description": "Path to your Google Cloud service account JSON file"
+    },
+    "GOOGLE_PROJECT_ID": {
+      "label": "Project ID",
+      "required": false,
+      "type": "string",
+      "description": "Your Google Cloud project ID (recommended)"
+    }
+  },
+  "configuration": {
+    "template": {
+      "command": "pipx",
+      "args": ["run", "analytics-mcp"],
+      "env": {
+        "GOOGLE_APPLICATION_CREDENTIALS": "${GOOGLE_APPLICATION_CREDENTIALS}",
+        "GOOGLE_PROJECT_ID": "${GOOGLE_PROJECT_ID}"
+      }
+    }
+  },
+  "metadata": {
+    "homepage": "https://analytics.google.com",
+    "repository": "https://github.com/googleanalytics/google-analytics-mcp",
+    "addedAt": "2025-12-18",
+    "lastUpdated": "2025-12-18"
+  }
+}

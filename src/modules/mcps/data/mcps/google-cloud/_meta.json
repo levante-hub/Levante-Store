@@ -1,0 +1,8 @@
+{
+  "service": "google-cloud",
+  "displayName": "Google Cloud",
+  "description": "Google Cloud Platform services and infrastructure management",
+  "website": "https://cloud.google.com",
+  "icon": "google-cloud",
+  "category": "development"
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "../_schema.json",
+  "id": "google-cloud-bigquery",
+  "name": "BigQuery",
+  "description": "Serverless data warehouse and analytics platform for large-scale data processing",
+  "category": "database",
+  "icon": "google-cloud",
+  "logoUrl": "https://www.gstatic.com/pantheon/images/bigquery/bigquery_icon_512.png",
+  "source": "official",
+  "maintainer": {
+    "name": "Google Cloud",
+    "url": "https://cloud.google.com/bigquery",
+    "github": "googleapis"
+  },
+  "status": "active",
+  "version": "latest",
+  "transport": "streamable-http",
+  "auth": {
+    "type": "oauth",
+    "note": "Uses OAuth 2.0 with Google Cloud IAM. Authenticate via your browser with Google Cloud credentials. Tokens are stored locally and never shared."
+  },
+  "inputs": {},
+  "configuration": {
+    "template": {
+      "type": "streamable-http",
+      "url": "https://bigquery.googleapis.com/mcp"
+    }
+  },
+  "metadata": {
+    "homepage": "https://cloud.google.com/bigquery/docs/use-bigquery-mcp",
+    "repository": "https://github.com/googleapis/google-cloud-python",
+    "addedAt": "2025-12-18",
+    "lastUpdated": "2025-12-18"
+  }
+}
