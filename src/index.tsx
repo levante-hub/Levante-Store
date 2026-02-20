@@ -3,6 +3,7 @@ import { cors } from 'hono/cors'
 import { swaggerUI } from '@hono/swagger-ui'
 import mcpsModule from '@/modules/mcps/routes'
 import announcementsModule from '@/modules/announcements/routes'
+import skillsModule from '@/modules/skills/routes'
 import { errorHandler, notFoundHandler } from '@/shared/middleware/errorHandler'
 import { openApiSpec } from '@/openapi'
 
@@ -33,6 +34,7 @@ app.use('*', errorHandler);
 // Montar rutas de API
 app.route('/api', mcpsModule);
 app.route('/api', announcementsModule);
+app.route('/api', skillsModule);
 
 // OpenAPI spec endpoint
 app.get('/openapi.json', (c) => {
