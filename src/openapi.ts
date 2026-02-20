@@ -51,6 +51,10 @@ Each MCP includes configuration templates for different transport types (stdio, 
       name: 'Announcements',
       description: 'Announcements operations',
     },
+    {
+      name: 'Skills',
+      description: 'AI agent skills catalog — discoverable SKILL.md files following the aitempl standard',
+    },
   ],
   paths: {
     '/mcps.json': {
@@ -219,6 +223,166 @@ Each MCP includes configuration templates for different transport types (stdio, 
                 schema: {
                   $ref: '#/components/schemas/Stats',
                 },
+              },
+            },
+          },
+        },
+      },
+    },
+    '/skills.json': {
+      get: {
+        tags: ['Skills'],
+        summary: 'Get full skills catalog',
+        description: 'Returns the complete catalog of AI agent skills as structured JSON. Each skill is parsed from a SKILL.md file following the aitempl standard.',
+        operationId: 'getSkillsCatalog',
+        responses: {
+          '200': {
+            description: 'Successful response',
+            content: {
+              'application/json': {
+                schema: {
+                  $ref: '#/components/schemas/SkillsCatalogResponse',
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+    '/skills/categories': {
+      get: {
+        tags: ['Skills'],
+        summary: 'List skill categories',
+        description: 'Returns all skill categories with their display names and skill counts.',
+        operationId: 'getSkillsCategories',
+        responses: {
+          '200': {
+            description: 'Successful response',
+            content: {
+              'application/json': {
+                schema: {
+                  $ref: '#/components/schemas/SkillsCategoriesResponse',
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+    '/skills/stats': {
+      get: {
+        tags: ['Skills'],
+        summary: 'Get skills statistics',
+        description: 'Returns statistics about the skills catalog.',
+        operationId: 'getSkillsStats',
+        responses: {
+          '200': {
+            description: 'Successful response',
+            content: {
+              'application/json': {
+                schema: {
+                  $ref: '#/components/schemas/SkillsStatsResponse',
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+    '/skills/category/{cat}': {
+      get: {
+        tags: ['Skills'],
+        summary: 'Get skills by category',
+        description: 'Returns all skills in a specific category.',
+        operationId: 'getSkillsByCategory',
+        parameters: [
+          {
+            name: 'cat',
+            in: 'path',
+            description: 'Category name (kebab-case)',
+            required: true,
+            schema: { type: 'string' },
+            examples: {
+              development: { value: 'development' },
+              database: { value: 'database' },
+              writing: { value: 'writing' },
+            },
+          },
+        ],
+        responses: {
+          '200': {
+            description: 'Successful response',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'object',
+                  properties: {
+                    category: { type: 'string', example: 'development' },
+                    total: { type: 'integer', example: 1 },
+                    skills: {
+                      type: 'array',
+                      items: { $ref: '#/components/schemas/SkillDescriptor' },
+                    },
+                  },
+                },
+              },
+            },
+          },
+          '404': {
+            description: 'Category not found',
+            content: {
+              'application/json': {
+                schema: { $ref: '#/components/schemas/Error' },
+              },
+            },
+          },
+        },
+      },
+    },
+    '/skills/{category}/{name}': {
+      get: {
+        tags: ['Skills'],
+        summary: 'Get skill by ID',
+        description: 'Returns a specific skill by its compound ID ({category}/{name}). The response includes the full markdown content.',
+        operationId: 'getSkillById',
+        parameters: [
+          {
+            name: 'category',
+            in: 'path',
+            description: 'Skill category',
+            required: true,
+            schema: { type: 'string' },
+            examples: {
+              development: { value: 'development' },
+              database: { value: 'database' },
+            },
+          },
+          {
+            name: 'name',
+            in: 'path',
+            description: 'Skill name (kebab-case)',
+            required: true,
+            schema: { type: 'string' },
+            examples: {
+              'react-patterns': { value: 'react-patterns' },
+              'sql-optimization': { value: 'sql-optimization' },
+            },
+          },
+        ],
+        responses: {
+          '200': {
+            description: 'Successful response',
+            content: {
+              'application/json': {
+                schema: { $ref: '#/components/schemas/SkillDescriptor' },
+              },
+            },
+          },
+          '404': {
+            description: 'Skill not found',
+            content: {
+              'application/json': {
+                schema: { $ref: '#/components/schemas/Error' },
               },
             },
           },
@@ -635,6 +799,68 @@ Each MCP includes configuration templates for different transport types (stdio, 
             ],
             description: 'The latest announcement for the requested category, or null if none found',
           },
+        },
+      },
+      SkillDescriptor: {
+        type: 'object',
+        required: ['id', 'name', 'description', 'category', 'content'],
+        properties: {
+          id: { type: 'string', description: 'Compound ID: category/name', example: 'development/react-patterns' },
+          name: { type: 'string', description: 'Skill name (kebab-case)', example: 'react-patterns' },
+          description: { type: 'string', description: 'What the skill does and when to use it' },
+          category: { type: 'string', description: 'Category folder name', example: 'development' },
+          content: { type: 'string', description: 'Markdown body of the SKILL.md file' },
+          author: { type: 'string', example: 'levante' },
+          version: { type: 'string', example: '1.0.0' },
+          license: { type: 'string', example: 'MIT' },
+          tags: { type: 'array', items: { type: 'string' }, example: ['React', 'TypeScript'] },
+          allowedTools: { type: 'string', description: 'Comma-separated Claude tools', example: 'Read, Write, Edit' },
+          model: { type: 'string', enum: ['sonnet', 'opus', 'haiku'], example: 'sonnet' },
+          userInvocable: { type: 'boolean', description: 'Whether the skill appears in the user skills menu', example: true },
+          dependencies: { type: 'array', items: { type: 'string' }, example: ['react>=18.0.0'] },
+          source: { type: 'string', description: 'Attribution if ported from another source' },
+          repo: { type: 'string', format: 'uri', description: 'Source repository URL' },
+          metadata: { type: 'object', additionalProperties: true },
+        },
+      },
+      SkillCategory: {
+        type: 'object',
+        required: ['category', 'displayName', 'count'],
+        properties: {
+          category: { type: 'string', example: 'development' },
+          displayName: { type: 'string', example: 'Development' },
+          count: { type: 'integer', example: 2 },
+        },
+      },
+      SkillsCatalogResponse: {
+        type: 'object',
+        required: ['version', 'total', 'skills'],
+        properties: {
+          version: { type: 'string', example: '1.0.0' },
+          total: { type: 'integer', example: 3 },
+          skills: {
+            type: 'array',
+            items: { $ref: '#/components/schemas/SkillDescriptor' },
+          },
+        },
+      },
+      SkillsCategoriesResponse: {
+        type: 'object',
+        required: ['categories'],
+        properties: {
+          categories: {
+            type: 'array',
+            items: { $ref: '#/components/schemas/SkillCategory' },
+          },
+        },
+      },
+      SkillsStatsResponse: {
+        type: 'object',
+        required: ['total', 'categories', 'categoryList'],
+        properties: {
+          total: { type: 'integer', example: 3 },
+          categories: { type: 'integer', example: 3 },
+          categoryList: { type: 'array', items: { type: 'string' }, example: ['database', 'development', 'writing'] },
         },
       },
       AnnouncementsResponse: {
